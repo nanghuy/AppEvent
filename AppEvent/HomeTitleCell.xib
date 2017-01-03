@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="homeTitleCell" id="KGk-i7-Jjw" customClass="HomeTitleCell" customModule="AppEvent" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="luY-HO-C3i">
+                        <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CFC-Ay-xjM">
+                                <rect key="frame" x="4" y="8" width="56" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99:99 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ouh-TY-PEZ">
+                                <rect key="frame" x="4" y="23" width="57" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="CFC-Ay-xjM" firstAttribute="centerX" secondItem="luY-HO-C3i" secondAttribute="centerX" id="IZt-OT-Qh0"/>
+                            <constraint firstAttribute="width" secondItem="luY-HO-C3i" secondAttribute="height" id="cCi-KY-WhO"/>
+                            <constraint firstItem="Ouh-TY-PEZ" firstAttribute="centerX" secondItem="luY-HO-C3i" secondAttribute="centerX" id="dDa-sl-Hzg"/>
+                            <constraint firstItem="Ouh-TY-PEZ" firstAttribute="top" secondItem="CFC-Ay-xjM" secondAttribute="bottom" id="hK6-Ly-1HE"/>
+                            <constraint firstItem="CFC-Ay-xjM" firstAttribute="top" secondItem="luY-HO-C3i" secondAttribute="top" constant="8" id="rcd-NU-24r"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p8e-NI-FEL">
+                        <rect key="frame" x="64" y="4" width="2" height="56"/>
+                        <color key="backgroundColor" red="0.059265486389999997" green="1" blue="0.93818242060000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="2" id="vIX-d5-5zO"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Natalie 's Birthday Bash" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgh-TO-Rrg">
+                        <rect key="frame" x="74" y="8" width="238" height="16"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Hang Zone" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dpk-60-d2h">
+                        <rect key="frame" x="74" y="24" width="238" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="Uae-pV-ABP">
+                        <rect key="frame" x="74" y="40" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="16" id="4pK-vg-NtM"/>
+                            <constraint firstAttribute="width" secondItem="Uae-pV-ABP" secondAttribute="height" id="sK1-uy-FmX"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kathy, Chandra and 1 other" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAR-Oj-r9e">
+                        <rect key="frame" x="98" y="40" width="214" height="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="luY-HO-C3i" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="0Lc-Mg-zSs"/>
+                    <constraint firstItem="Dpk-60-d2h" firstAttribute="top" secondItem="dgh-TO-Rrg" secondAttribute="bottom" id="4zi-cQ-6xg"/>
+                    <constraint firstAttribute="trailing" secondItem="Dpk-60-d2h" secondAttribute="trailing" constant="8" id="EF1-Cz-fiG"/>
+                    <constraint firstAttribute="bottom" secondItem="p8e-NI-FEL" secondAttribute="bottom" constant="4" id="ESr-V0-xPR"/>
+                    <constraint firstAttribute="bottom" secondItem="luY-HO-C3i" secondAttribute="bottom" id="GOQ-E3-kgZ"/>
+                    <constraint firstAttribute="trailing" secondItem="aAR-Oj-r9e" secondAttribute="trailing" constant="8" id="Ivl-Vy-4lJ"/>
+                    <constraint firstAttribute="trailing" secondItem="dgh-TO-Rrg" secondAttribute="trailing" constant="8" id="Ktf-NI-l4h"/>
+                    <constraint firstItem="aAR-Oj-r9e" firstAttribute="leading" secondItem="Uae-pV-ABP" secondAttribute="trailing" constant="8" id="Ni5-pZ-C6g"/>
+                    <constraint firstItem="luY-HO-C3i" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="VeT-Ip-Okt"/>
+                    <constraint firstItem="dgh-TO-Rrg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Ynd-kM-SGg"/>
+                    <constraint firstItem="aAR-Oj-r9e" firstAttribute="top" secondItem="Dpk-60-d2h" secondAttribute="bottom" id="Yvl-fF-8eA"/>
+                    <constraint firstItem="Dpk-60-d2h" firstAttribute="leading" secondItem="p8e-NI-FEL" secondAttribute="trailing" constant="8" id="bJU-nm-7Sj"/>
+                    <constraint firstItem="dgh-TO-Rrg" firstAttribute="leading" secondItem="p8e-NI-FEL" secondAttribute="trailing" constant="8" id="dQX-sL-LQu"/>
+                    <constraint firstItem="p8e-NI-FEL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="hPa-yc-wsj"/>
+                    <constraint firstItem="Uae-pV-ABP" firstAttribute="top" secondItem="Dpk-60-d2h" secondAttribute="bottom" id="j9Y-S9-L2H"/>
+                    <constraint firstItem="p8e-NI-FEL" firstAttribute="leading" secondItem="luY-HO-C3i" secondAttribute="trailing" id="mbm-j6-lEX"/>
+                    <constraint firstAttribute="bottom" secondItem="Uae-pV-ABP" secondAttribute="bottom" constant="8" id="tdc-Jx-1UX"/>
+                    <constraint firstItem="Uae-pV-ABP" firstAttribute="leading" secondItem="p8e-NI-FEL" secondAttribute="trailing" constant="8" id="x43-eC-HVE"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="lblAddress" destination="Dpk-60-d2h" id="EVW-rM-Umg"/>
+                <outlet property="lblEndTime" destination="Ouh-TY-PEZ" id="KXd-OC-Vaq"/>
+                <outlet property="lblNumberOfParticipants" destination="aAR-Oj-r9e" id="lN6-tW-Uug"/>
+                <outlet property="lblStartTime" destination="CFC-Ay-xjM" id="g65-LB-xi0"/>
+                <outlet property="lblTitle" destination="dgh-TO-Rrg" id="O5L-lv-Zg0"/>
+                <outlet property="viewColor" destination="p8e-NI-FEL" id="5Ss-dy-f5s"/>
+            </connections>
+            <point key="canvasLocation" x="104" y="-3"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Checkmark" width="25" height="25"/>
+    </resources>
+</document>
