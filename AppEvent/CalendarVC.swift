@@ -19,10 +19,7 @@ class CalendarVC: UIViewController {
         static let sundayTextDisabled = textDisabled
         static let sundaySelectionBackground = selectionBackground
     }
-    @IBOutlet weak var lbMonthCurrent: UILabel!
     var animationFinished = true
-
-    
     @IBOutlet weak var calendarMenuView: CVCalendarMenuView!
     @IBOutlet weak var calendarView: CVCalendarView!
     override func awakeFromNib() {
@@ -33,20 +30,12 @@ class CalendarVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.title = "hello"
-//        
-//        let btnName = UIButton()
-//        btnName.setImage(UIImage(named: "Settings"), forState: .Normal)
-//        btnName.frame = CGRectMake(0, 0, 30, 30)
-//        btnName.addTarget(self, action: #selector(CalendarVC.addTapped), forControlEvents: .TouchUpInside)
-//        
-//        //.... Set Right/Left Bar Button item
-//        let rightBarButton = UIBarButtonItem()
-//        rightBarButton.customView = btnName
-//        self.navigationItem.rightBarButtonItem = rightBarButton
+        let setting = UIBarButtonItem(image: UIImage(named: "Settings"), style: .Plain, target: nil, action: #selector(CalendarVC.addTapped))
+
         
-//        self.navigationController?.navigationBar.
+        self.navigationController?.navigationBar.topItem?.title = CVDate(date: NSDate()).globalDescription
         
+        self.navigationController?.navigationBar.topItem?.leftBarButtonItem = setting
     }
 
     func addTapped(){
@@ -64,8 +53,6 @@ class CalendarVC: UIViewController {
         calendarView.commitCalendarViewUpdate()
         calendarMenuView.commitMenuViewUpdate()
         
-        self.navigationItem.title = "aaaaaa"
-
     }
 }
 
@@ -118,44 +105,35 @@ extension CalendarVC: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
         print(dayView.date.day,", ",dayView.date.globalDescription)
     }
     
-//    func presentedDateUpdated(date: CVDate) {
-//        
-//        if lbMonthCurrent.text != date.globalDescription && self.animationFinished {
-//            let updatedMonthLabel = UILabel()
-//            updatedMonthLabel.textColor = lbMonthCurrent.textColor
-//            updatedMonthLabel.font = lbMonthCurrent.font
-//            updatedMonthLabel.textAlignment = .Center
-//            updatedMonthLabel.text = date.globalDescription
-//            updatedMonthLabel.sizeToFit()
-//            updatedMonthLabel.alpha = 0
-//            updatedMonthLabel.center = self.lbMonthCurrent.center
-//            
-//            let offset = CGFloat(44)
-//            updatedMonthLabel.transform = CGAffineTransformMakeTranslation(0, offset)
-//            updatedMonthLabel.transform = CGAffineTransformMakeScale(1, 0.1)
-//            
-//            UIView.animateWithDuration(0.35, delay: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
-//                self.animationFinished = false
-//                self.lbMonthCurrent.transform = CGAffineTransformMakeTranslation(0, -offset)
-//                self.lbMonthCurrent.transform = CGAffineTransformMakeScale(1, 0.1)
-//                self.lbMonthCurrent.alpha = 0
-//                
-//                updatedMonthLabel.alpha = 1
-//                updatedMonthLabel.transform = CGAffineTransformIdentity
-//                
-//            }) { _ in
-//                
-//                self.animationFinished = true
-//                self.lbMonthCurrent.frame = updatedMonthLabel.frame
-//                self.lbMonthCurrent.text = updatedMonthLabel.text
-//                self.lbMonthCurrent.transform = CGAffineTransformIdentity
-//                self.lbMonthCurrent.alpha = 1
-//                updatedMonthLabel.removeFromSuperview()
-//            }
-//            
-//            self.view.insertSubview(updatedMonthLabel, aboveSubview: self.lbMonthCurrent)
-//        }
-//    }
+    func presentedDateUpdated(date: CVDate) {
+        
+        if self.navigationController?.navigationBar.topItem?.title != date.globalDescription && self.animationFinished {
+            let updatedMonthLabel = UILabel()
+            updatedMonthLabel.textAlignment = .Center
+            updatedMonthLabel.text = date.globalDescription
+            updatedMonthLabel.sizeToFit()
+            updatedMonthLabel.alpha = 0
+            
+            let offset = CGFloat(44)
+            updatedMonthLabel.transform = CGAffineTransformMakeTranslation(0, offset)
+            updatedMonthLabel.transform = CGAffineTransformMakeScale(1, 0.1)
+            
+            UIView.animateWithDuration(0.35, delay: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+                self.animationFinished = false
+
+                
+                updatedMonthLabel.alpha = 1
+                updatedMonthLabel.transform = CGAffineTransformIdentity
+                
+            }) { _ in
+                
+                self.animationFinished = true
+               self.navigationController?.navigationBar.topItem?.title = updatedMonthLabel.text
+                updatedMonthLabel.removeFromSuperview()
+            }
+            
+        }
+    }
     
     
 }
