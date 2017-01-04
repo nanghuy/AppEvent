@@ -9,17 +9,15 @@
 import UIKit
 
 class HomeDetailCell: UITableViewCell {
+    
+ @IBOutlet weak var btnLike: JOEmojiableBtn!
 
-    @IBOutlet weak var btnLike: JOEmojiableBtn!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
-//        btnLike.backgroundColor = UIColor.blueColor()
-//        btnLike.dataset = [
-//            JOEmojiableOption.init(image: "", name: <#T##String#>)
-//        ]
+        
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

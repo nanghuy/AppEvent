@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A4C9931A1E1C92C700379FB1 /* Facebook.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4C993191E1C92C700379FB1 /* Facebook.xcassets */; };
+		A4C9931C1E1CA1BC00379FB1 /* Classes in Resources */ = {isa = PBXBuildFile; fileRef = A4C9931B1E1CA1BC00379FB1 /* Classes */; };
 		A4E50E7E1E1B4A2200ECCE04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E50E7D1E1B4A2200ECCE04 /* AppDelegate.swift */; };
 		A4E50E831E1B4A2200ECCE04 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4E50E811E1B4A2200ECCE04 /* Main.storyboard */; };
 		A4E50E851E1B4A2200ECCE04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4E50E841E1B4A2200ECCE04 /* Assets.xcassets */; };
@@ -63,6 +65,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A4C993191E1C92C700379FB1 /* Facebook.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Facebook.xcassets; sourceTree = "<group>"; };
+		A4C9931B1E1CA1BC00379FB1 /* Classes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Classes; sourceTree = "<group>"; };
+		A4C9931D1E1CA1DD00379FB1 /* AppEvent-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppEvent-Bridging-Header.h"; sourceTree = "<group>"; };
 		A4E50E7A1E1B4A2200ECCE04 /* AppEvent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppEvent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4E50E7D1E1B4A2200ECCE04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A4E50E821E1B4A2200ECCE04 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -263,8 +268,11 @@
 		B3773BD21E1BAFC7007DB1EE /* Emoji Facebook\ */ = {
 			isa = PBXGroup;
 			children = (
+				A4C9931B1E1CA1BC00379FB1 /* Classes */,
 				B3773BCE1E1BAFC3007DB1EE /* JOEmojiableBtn.swift */,
 				B3773BCF1E1BAFC3007DB1EE /* SelectorView.swift */,
+				A4C993191E1C92C700379FB1 /* Facebook.xcassets */,
+				A4C9931D1E1CA1DD00379FB1 /* AppEvent-Bridging-Header.h */,
 			);
 			name = "Emoji Facebook\\";
 			sourceTree = "<group>";
@@ -345,9 +353,11 @@
 				A4E50EB21E1B5B9800ECCE04 /* DetailVC.xib in Resources */,
 				B3773BCD1E1B9D1A007DB1EE /* Info.plist in Resources */,
 				A4E50E881E1B4A2200ECCE04 /* LaunchScreen.storyboard in Resources */,
+				A4C9931A1E1C92C700379FB1 /* Facebook.xcassets in Resources */,
 				B3773BDE1E1BB019007DB1EE /* HomeHeaderCell.xib in Resources */,
 				A4E50E9F1E1B4B0600ECCE04 /* HomeVC.xib in Resources */,
 				A4E50E851E1B4A2200ECCE04 /* Assets.xcassets in Resources */,
+				A4C9931C1E1CA1BC00379FB1 /* Classes in Resources */,
 				A4E50EAB1E1B4B3000ECCE04 /* ProfileVC.xib in Resources */,
 				A4E50EA71E1B4B2100ECCE04 /* CalendarVC.xib in Resources */,
 				B3773BDC1E1BB019007DB1EE /* HomeDetailCell.xib in Resources */,
@@ -517,10 +527,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = AppEvent/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Bai-Tap.AppEvent";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AppEvent/AppEvent-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -528,10 +541,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = AppEvent/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Bai-Tap.AppEvent";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AppEvent/AppEvent-Bridging-Header.h";
 			};
 			name = Release;
 		};

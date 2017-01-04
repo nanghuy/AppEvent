@@ -170,7 +170,7 @@
                 </variation>
             </tableViewCellContentView>
             <connections>
-                <outlet property="btnLike" destination="y3b-c5-z8U" id="L3c-zL-mJC"/>
+                <outlet property="btnLike" destination="y3b-c5-z8U" id="hDF-YF-AFy"/>
             </connections>
             <point key="canvasLocation" x="172" y="-19"/>
         </tableViewCell>
