@@ -1,19 +1,72 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailVC" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailVC" customModule="AppEvent" customModuleProvider="target">
             <connections>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hxI-4F-rD1">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ehg-ok-eic">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="618"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AvataEvent" translatesAutoresizingMaskIntoConstraints="NO" id="dOP-1e-aFA">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="206"/>
+                                </imageView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6kk-GC-cTQ">
+                                    <rect key="frame" x="20" y="20" width="22" height="22"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="22" id="R9r-xu-aJi"/>
+                                        <constraint firstAttribute="width" constant="22" id="x9w-ln-IMo"/>
+                                    </constraints>
+                                    <state key="normal" image="Back"/>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="dOP-1e-aFA" firstAttribute="width" secondItem="ehg-ok-eic" secondAttribute="width" id="GJo-Fd-J8A"/>
+                                <constraint firstItem="dOP-1e-aFA" firstAttribute="height" secondItem="ehg-ok-eic" secondAttribute="height" multiplier="1:3" id="Hrn-sr-Ylv"/>
+                                <constraint firstItem="6kk-GC-cTQ" firstAttribute="top" secondItem="ehg-ok-eic" secondAttribute="top" constant="20" id="JVz-37-mAp"/>
+                                <constraint firstItem="dOP-1e-aFA" firstAttribute="leading" secondItem="ehg-ok-eic" secondAttribute="leading" id="cJ9-N8-sJA"/>
+                                <constraint firstItem="6kk-GC-cTQ" firstAttribute="leading" secondItem="ehg-ok-eic" secondAttribute="leading" constant="20" id="dBD-xY-jMp"/>
+                                <constraint firstItem="dOP-1e-aFA" firstAttribute="top" secondItem="ehg-ok-eic" secondAttribute="top" id="ncA-5k-PAO"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="ehg-ok-eic" firstAttribute="top" secondItem="hxI-4F-rD1" secondAttribute="top" id="MtN-4v-4rL"/>
+                        <constraint firstAttribute="bottom" secondItem="ehg-ok-eic" secondAttribute="bottom" id="Sgx-i2-UJu"/>
+                        <constraint firstItem="ehg-ok-eic" firstAttribute="leading" secondItem="hxI-4F-rD1" secondAttribute="leading" id="nCj-fw-8tX"/>
+                        <constraint firstAttribute="trailing" secondItem="ehg-ok-eic" secondAttribute="trailing" id="rRp-Cc-KfK"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="hxI-4F-rD1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="3QN-Wd-8LF"/>
+                <constraint firstItem="ehg-ok-eic" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" priority="250" id="Of5-3v-C8O"/>
+                <constraint firstAttribute="bottom" secondItem="hxI-4F-rD1" secondAttribute="bottom" id="Y39-I7-G6j"/>
+                <constraint firstItem="ehg-ok-eic" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="Yx7-KJ-lsG"/>
+                <constraint firstItem="hxI-4F-rD1" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="kJL-na-1cH"/>
+                <constraint firstAttribute="trailing" secondItem="hxI-4F-rD1" secondAttribute="trailing" id="vPR-JK-z3o"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
+    <resources>
+        <image name="AvataEvent" width="310" height="206"/>
+        <image name="Back" width="22" height="22"/>
+    </resources>
 </document>

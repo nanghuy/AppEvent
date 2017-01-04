@@ -19,7 +19,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1J0-sA-5zj" customClass="CVCalendarMenuView" customModule="AppEvent" customModuleProvider="target">
-                    <rect key="frame" x="8" y="0.0" width="304" height="25"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="25"/>
                     <color key="backgroundColor" red="0.92549019610000005" green="0.0" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="nlz-ja-THX"/>
@@ -29,8 +29,8 @@
                     </connections>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Llz-rY-hdJ" customClass="CVCalendarView" customModule="AppEvent" customModuleProvider="target">
-                    <rect key="frame" x="8" y="25" width="304" height="300"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <rect key="frame" x="0.0" y="25" width="320" height="300"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="300" id="aTJ-Me-Ya1"/>
                     </constraints>
@@ -40,7 +40,7 @@
                     </connections>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oZh-5M-mqh">
-                    <rect key="frame" x="8" y="325" width="304" height="243"/>
+                    <rect key="frame" x="0.0" y="325" width="320" height="243"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="o4n-wg-Ph7"/>
@@ -50,13 +50,13 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="oZh-5M-mqh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="1BP-Mn-zAt"/>
+                <constraint firstItem="oZh-5M-mqh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1BP-Mn-zAt"/>
                 <constraint firstItem="Llz-rY-hdJ" firstAttribute="width" secondItem="1J0-sA-5zj" secondAttribute="width" id="4Wo-3n-hIf"/>
                 <constraint firstItem="Llz-rY-hdJ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="5zk-Oe-YIQ"/>
-                <constraint firstAttribute="trailing" secondItem="1J0-sA-5zj" secondAttribute="trailing" constant="8" id="OMP-nO-Dx5"/>
+                <constraint firstAttribute="trailing" secondItem="1J0-sA-5zj" secondAttribute="trailing" id="OMP-nO-Dx5"/>
                 <constraint firstItem="Llz-rY-hdJ" firstAttribute="top" secondItem="1J0-sA-5zj" secondAttribute="bottom" id="Wq3-CR-YzF"/>
-                <constraint firstItem="1J0-sA-5zj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="aBG-xG-RQx"/>
-                <constraint firstAttribute="trailing" secondItem="oZh-5M-mqh" secondAttribute="trailing" constant="8" id="bJ5-C3-CZn"/>
+                <constraint firstItem="1J0-sA-5zj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="aBG-xG-RQx"/>
+                <constraint firstAttribute="trailing" secondItem="oZh-5M-mqh" secondAttribute="trailing" id="bJ5-C3-CZn"/>
                 <constraint firstItem="1J0-sA-5zj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="msj-tB-Hk8"/>
                 <constraint firstItem="oZh-5M-mqh" firstAttribute="top" secondItem="Llz-rY-hdJ" secondAttribute="bottom" id="oQg-YK-1SF"/>
                 <constraint firstAttribute="bottom" secondItem="oZh-5M-mqh" secondAttribute="bottom" id="pal-pb-AOp"/>

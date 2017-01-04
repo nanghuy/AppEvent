@@ -10,6 +10,7 @@ import UIKit
 private enum NameCell:String {
     case Title = "HomeTitleCell"
     case HomeTitleCell = "homeTitleCell"
+    
 }
 class CalendarVC: UIViewController {
     
@@ -44,7 +45,8 @@ class CalendarVC: UIViewController {
         
         
         tbvCalendar.registerNib(UINib.init(nibName: NameCell.Title.rawValue, bundle: nil), forCellReuseIdentifier: NameCell.HomeTitleCell.rawValue)
-        
+        let nib = UINib(nibName: "CalendarTableSectionHeader", bundle: nil)
+        tbvCalendar.registerNib(nib, forHeaderFooterViewReuseIdentifier: "CalendarTableSectionHeader")
     }
     
     func settingCalendar(){
@@ -111,11 +113,19 @@ extension CalendarVC: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     }
     
     func dayOfWeekBackGroundColor() -> UIColor {
-        return UIColor.whiteColor()
+        return UIColor.groupTableViewBackgroundColor()
     }
     
     func didSelectDayView(dayView: DayView, animationDidFinish: Bool) {
         print(dayView.date.day,", ",dayView.date.globalDescription)
+        
+        if dayView.date.day == 5 {
+            self.tbvCalendar.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+        }
+        if dayView.date.day == 7 {
+            self.tbvCalendar.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+        }
+
     }
     
     func presentedDateUpdated(date: CVDate) {
@@ -214,6 +224,48 @@ extension CalendarVC : UITableViewDataSource {
         
         return cell
     }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("CalendarTableSectionHeader") as! CalendarTableSectionHeader
+
+        header.backgroundViewHeader.layer.borderWidth = 1
+        header.backgroundViewHeader.layer.borderColor = UIColor.lightGrayColor().CGColor
+        
+        switch section {
+        case 0:
+            header.titleLabel.text = "5/1/2017"
+        case 1:
+            header.titleLabel.text = "7/1/2017"
+        default:
+            header.titleLabel.text = ""
+        }
+        
+        return header
+  
+        
+//        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 18))
+//        headerView.backgroundColor = UIColor.groupTableViewBackgroundColor()
+//        headerView.layer.borderColor = UIColor.lightGrayColor().CGColor
+//        headerView.layer.borderWidth = 1
+//        
+//        let lbTitle = UILabel(frame: CGRect(x: headerView.frame.origin.x+8, y: headerView.frame.origin.y, width: headerView.frame.size.width - 8, height: headerView.frame.size.height))
+//        lbTitle.textColor = UIColor.lightGrayColor()
+//        lbTitle.textAlignment = NSTextAlignment.Center
+//
+//        switch section {
+//        case 0:
+//            lbTitle.text = "5/1/2017"
+//        case 1:
+//            lbTitle.text = "7/1/2017"
+//        default:
+//            lbTitle.text = ""
+//        }
+//        
+//        headerView.addSubview(lbTitle)
+//        
+//        return headerView
+    }
 }
 
 extension CalendarVC : UITableViewDelegate {
@@ -223,16 +275,6 @@ extension CalendarVC : UITableViewDelegate {
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 65
     }
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        switch section {
-        case 1:
-            return 0.0001
-        default:
-            return 10
-        }
-    }
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.0001
-    }
+    
 }
 
