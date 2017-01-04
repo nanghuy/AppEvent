@@ -7,9 +7,12 @@
 //
 
 import UIKit
-
+private enum NameCell:String {
+    case Title = "HomeTitleCell"
+    case HomeTitleCell = "homeTitleCell"
+}
 class CalendarVC: UIViewController {
-
+    
     struct Color {
         static let selectedText = UIColor.whiteColor()
         static let text = UIColor.blackColor()
@@ -22,6 +25,8 @@ class CalendarVC: UIViewController {
     var animationFinished = true
     @IBOutlet weak var calendarMenuView: CVCalendarMenuView!
     @IBOutlet weak var calendarView: CVCalendarView!
+    
+    @IBOutlet weak var tbvCalendar: UITableView!
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -30,16 +35,24 @@ class CalendarVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let setting = UIBarButtonItem(image: UIImage(named: "Settings"), style: .Plain, target: nil, action: #selector(CalendarVC.addTapped))
-
-        
+        let setting = UIBarButtonItem(image: UIImage(named: "Settings"), style: .Plain, target: self, action: #selector(settingCalendar))
+        let add = UIBarButtonItem(image: UIImage(named: "Plus"), style: .Plain, target: self, action: #selector(addEvent))
         self.navigationController?.navigationBar.topItem?.title = CVDate(date: NSDate()).globalDescription
         
         self.navigationController?.navigationBar.topItem?.leftBarButtonItem = setting
+        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = add
+        
+        
+        tbvCalendar.registerNib(UINib.init(nibName: NameCell.Title.rawValue, bundle: nil), forCellReuseIdentifier: NameCell.HomeTitleCell.rawValue)
+        
     }
-
-    func addTapped(){
-        print("hello")
+    
+    func settingCalendar(){
+        print("setting")
+    }
+    
+    func addEvent(){
+        print("add event")
     }
     
     override func didReceiveMemoryWarning() {
@@ -120,7 +133,7 @@ extension CalendarVC: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
             
             UIView.animateWithDuration(0.35, delay: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
                 self.animationFinished = false
-
+                
                 
                 updatedMonthLabel.alpha = 1
                 updatedMonthLabel.transform = CGAffineTransformIdentity
@@ -128,7 +141,7 @@ extension CalendarVC: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
             }) { _ in
                 
                 self.animationFinished = true
-               self.navigationController?.navigationBar.topItem?.title = updatedMonthLabel.text
+                self.navigationController?.navigationBar.topItem?.title = updatedMonthLabel.text
                 updatedMonthLabel.removeFromSuperview()
             }
             
@@ -170,3 +183,56 @@ extension CalendarVC: CVCalendarViewAppearanceDelegate {
         }
     }
 }
+
+extension CalendarVC : UITableViewDataSource {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 2
+    }
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return 3
+        default:
+            return 0
+        }
+    }
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier(NameCell.HomeTitleCell.rawValue, forIndexPath: indexPath) as! HomeTitleCell
+        
+        if indexPath.row == 0 {
+            cell.lblStartTime.text = "2:00 PM"
+            cell.lblEndTime.text = "5:00 PM"
+            cell.viewColor.backgroundColor = UIColor.yellowColor()
+        } else if indexPath.row == 1 {
+            cell.viewColor.backgroundColor = UIColor.orangeColor()
+        } else {
+            cell.viewColor.backgroundColor = UIColor.greenColor()
+        }
+        
+        return cell
+    }
+}
+
+extension CalendarVC : UITableViewDelegate {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 65
+    }
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 1:
+            return 0.0001
+        default:
+            return 10
+        }
+    }
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.0001
+    }
+}
+
