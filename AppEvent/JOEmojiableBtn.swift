@@ -102,6 +102,9 @@ public class JOEmojiableBtn: UIButton {
         self.initialize()
     }
     
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     private func initialize(){
         longTap = UILongPressGestureRecognizer(target: self, action: #selector(JOEmojiableBtn.longTapEvent))
@@ -255,10 +258,7 @@ public class JOEmojiableBtn: UIButton {
             }
         }
     }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+
 }
 
     extension JOEmojiableBtn:SelectorViewDelegate {

@@ -26,7 +26,7 @@ class HomeVC: UIViewController {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.navigationController?.title = "Home"
+        self.navigationController?.navigationBar.topItem?.title = "Home"
     }
     
     override func viewDidLoad() {
@@ -67,7 +67,7 @@ extension HomeVC : UITableViewDataSource {
         case 1:
             return 3
         default:
-            return 0
+            return 2
         }
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -82,7 +82,14 @@ extension HomeVC : UITableViewDataSource {
             //            }
             
             return cell
-        } else {
+        }
+//        else if indexPath.row == 2 {
+//            let cell = tableView.dequeueReusableCellWithIdentifier(NameCell.HomeDetailCell.rawValue, forIndexPath: indexPath) as! HomeDetailCell
+//            
+//            return cell
+//        }
+
+        else {
             let cell = tableView.dequeueReusableCellWithIdentifier(NameCell.HomeTitleCell.rawValue, forIndexPath: indexPath) as! HomeTitleCell
             
             if indexPath.row == 0 {
@@ -110,6 +117,8 @@ extension HomeVC : UITableViewDelegate {
             return 44
         case 1:
             return 65
+        case 2:
+            return 0
         default:
             return 0
         }
