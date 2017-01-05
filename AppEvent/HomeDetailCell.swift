@@ -10,9 +10,6 @@ import UIKit
 
 class HomeDetailCell: UITableViewCell {
     
- @IBOutlet weak var btnLike: JOEmojiableBtn!
-
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
