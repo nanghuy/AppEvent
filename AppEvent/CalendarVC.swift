@@ -14,6 +14,9 @@ private enum NameCell:String {
 }
 class CalendarVC: UIViewController {
     
+    @IBOutlet weak var constraintTop: NSLayoutConstraint!
+    @IBOutlet weak var constraintBotton: NSLayoutConstraint!
+    
     struct Color {
         static let selectedText = UIColor.whiteColor()
         static let text = UIColor.blackColor()
@@ -68,6 +71,11 @@ class CalendarVC: UIViewController {
         calendarView.commitCalendarViewUpdate()
         calendarMenuView.commitMenuViewUpdate()
         
+        constraintTop.constant = self.navigationController!.navigationBar.frame.size.height + 20
+        constraintBotton.constant = (self.tabBarController?.tabBar.frame.size.height)!
+
+        self.view.layoutIfNeeded()
+
     }
 }
 
@@ -100,7 +108,7 @@ extension CalendarVC: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     
     func dotMarker(shouldShowOnDayView dayView: CVCalendarDayView) -> Bool {
         let day = dayView.date.day
-        let randomDay = 5
+        let randomDay = 6
         if day == randomDay || day == 7 {
             return true
         }
@@ -119,7 +127,7 @@ extension CalendarVC: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     func didSelectDayView(dayView: DayView, animationDidFinish: Bool) {
         print(dayView.date.day,", ",dayView.date.globalDescription)
         
-        if dayView.date.day == 5 {
+        if dayView.date.day == 6 {
             self.tbvCalendar.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
         }
         if dayView.date.day == 7 {
@@ -234,7 +242,7 @@ extension CalendarVC : UITableViewDataSource {
         
         switch section {
         case 0:
-            header.titleLabel.text = "5/1/2017"
+            header.titleLabel.text = "6/1/2017"
         case 1:
             header.titleLabel.text = "7/1/2017"
         default:
@@ -247,9 +255,9 @@ extension CalendarVC : UITableViewDataSource {
 
 extension CalendarVC : UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)        
         let mainVC = DetailVC(nibName:"DetailVC", bundle:nil)
-        self.navigationController!.pushViewController(mainVC, animated: true);
+        self.navigationController!.pushViewController(mainVC, animated: true)
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 65
