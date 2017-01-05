@@ -51,12 +51,6 @@
                             <constraint firstAttribute="width" secondItem="mD7-m3-XdC" secondAttribute="height" id="5Sf-vs-gz5"/>
                         </constraints>
                     </imageView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AvataEvent" translatesAutoresizingMaskIntoConstraints="NO" id="UaD-rN-UuZ">
-                        <rect key="frame" x="8" y="48" width="304" height="162"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="UaD-rN-UuZ" secondAttribute="height" multiplier="15:8" id="GaW-RR-dO3"/>
-                        </constraints>
-                    </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b3f-u7-Hib">
                         <rect key="frame" x="8" y="210" width="304" height="61"/>
                         <subviews>
@@ -318,6 +312,12 @@
                             </mask>
                         </variation>
                     </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AvataEvent" translatesAutoresizingMaskIntoConstraints="NO" id="UaD-rN-UuZ">
+                        <rect key="frame" x="8" y="48" width="304" height="162"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="UaD-rN-UuZ" secondAttribute="height" multiplier="15:8" id="GaW-RR-dO3"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="0fJ-kf-tVw" firstAttribute="height" secondItem="b3f-u7-Hib" secondAttribute="height" id="3uX-Dz-XTh"/>
