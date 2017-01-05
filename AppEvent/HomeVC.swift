@@ -22,11 +22,20 @@ private enum NameCell:String {
 class HomeVC: UIViewController {
     
     @IBOutlet weak var tbvHome: UITableView!
+    @IBOutlet weak var heightConstraintTable: NSLayoutConstraint!
+    @IBOutlet weak var bottomConstraintTable: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         self.navigationController?.navigationBar.topItem?.title = "Home"
+    }
+    
+    override func viewDidLayoutSubviews() {
+//        heightConstraintTable.constant = (navigationController?.navigationBar.frame.size.height)!
+//        bottomConstraintTable.constant = (tabBarController?.tabBar.frame.size.height)!
+//        
+//        view.layoutIfNeeded()
     }
     
     override func viewDidLoad() {
@@ -67,7 +76,7 @@ extension HomeVC : UITableViewDataSource {
         case 1:
             return 3
         case 2:
-            return 10
+            return 5
         default:
             return 2
         }

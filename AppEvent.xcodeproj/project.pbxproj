@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A4CACADD1E1E2F90005D9067 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4CACADC1E1E2F90005D9067 /* UIKit.framework */; };
+		A4CACADF1E1E2FA0005D9067 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4CACADE1E1E2FA0005D9067 /* Foundation.framework */; };
+		A4CACAE11E1E2FA4005D9067 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4CACAE01E1E2FA4005D9067 /* MapKit.framework */; };
+		A4CACAE51E1E2FF8005D9067 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CACAE31E1E2FF8005D9067 /* SearchCell.swift */; };
+		A4CACAE61E1E2FF8005D9067 /* SearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4CACAE41E1E2FF8005D9067 /* SearchCell.xib */; };
 		A4E50E7E1E1B4A2200ECCE04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E50E7D1E1B4A2200ECCE04 /* AppDelegate.swift */; };
 		A4E50E831E1B4A2200ECCE04 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4E50E811E1B4A2200ECCE04 /* Main.storyboard */; };
 		A4E50E851E1B4A2200ECCE04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4E50E841E1B4A2200ECCE04 /* Assets.xcassets */; };
@@ -76,6 +81,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A4CACADC1E1E2F90005D9067 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A4CACADE1E1E2FA0005D9067 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A4CACAE01E1E2FA4005D9067 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		A4CACAE31E1E2FF8005D9067 /* SearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
+		A4CACAE41E1E2FF8005D9067 /* SearchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchCell.xib; sourceTree = "<group>"; };
 		A4E50E7A1E1B4A2200ECCE04 /* AppEvent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppEvent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4E50E7D1E1B4A2200ECCE04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A4E50E821E1B4A2200ECCE04 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -156,15 +166,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4CACAE11E1E2FA4005D9067 /* MapKit.framework in Frameworks */,
+				A4CACADF1E1E2FA0005D9067 /* Foundation.framework in Frameworks */,
+				A4CACADD1E1E2F90005D9067 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A4CACAE21E1E2FCA005D9067 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A4CACAE31E1E2FF8005D9067 /* SearchCell.swift */,
+				A4CACAE41E1E2FF8005D9067 /* SearchCell.xib */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
 		A4E50E711E1B4A2200ECCE04 = {
 			isa = PBXGroup;
 			children = (
+				A4CACAE01E1E2FA4005D9067 /* MapKit.framework */,
+				A4CACADE1E1E2FA0005D9067 /* Foundation.framework */,
+				A4CACADC1E1E2F90005D9067 /* UIKit.framework */,
 				A4E50E7C1E1B4A2200ECCE04 /* AppEvent */,
 				A4E50E7B1E1B4A2200ECCE04 /* Products */,
 			);
@@ -220,6 +245,7 @@
 		A4E50E911E1B4A6E00ECCE04 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				A4CACAE21E1E2FCA005D9067 /* Cell */,
 				A4E50EA01E1B4B1200ECCE04 /* SearchVC.swift */,
 				A4E50EA11E1B4B1200ECCE04 /* SearchVC.xib */,
 			);
@@ -409,6 +435,7 @@
 				A4E50EB21E1B5B9800ECCE04 /* DetailVC.xib in Resources */,
 				B3773BCD1E1B9D1A007DB1EE /* Info.plist in Resources */,
 				A4E50E881E1B4A2200ECCE04 /* LaunchScreen.storyboard in Resources */,
+				A4CACAE61E1E2FF8005D9067 /* SearchCell.xib in Resources */,
 				B32FEC3C1E1CA60600E919A7 /* CalendarTableSectionHeader.xib in Resources */,
 				B3773BDE1E1BB019007DB1EE /* HomeHeaderCell.xib in Resources */,
 				A4E50E9F1E1B4B0600ECCE04 /* HomeVC.xib in Resources */,
@@ -474,6 +501,7 @@
 				B3773BCC1E1B9D1A007DB1EE /* CVWeekdaySymbolType.swift in Sources */,
 				A4E50E7E1E1B4A2200ECCE04 /* AppDelegate.swift in Sources */,
 				A4E50EB11E1B5B9800ECCE04 /* DetailVC.swift in Sources */,
+				A4CACAE51E1E2FF8005D9067 /* SearchCell.swift in Sources */,
 				B3773BBC1E1B9D1A007DB1EE /* CVCalendarViewAnimatorDelegate.swift in Sources */,
 				B3773BC21E1B9D1A007DB1EE /* CVCalendarWeekday.swift in Sources */,
 				B3773BD01E1BAFC3007DB1EE /* JOEmojiableBtn.swift in Sources */,
