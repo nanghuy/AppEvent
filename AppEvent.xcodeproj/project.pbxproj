@@ -62,6 +62,12 @@
 		B3773BDC1E1BB019007DB1EE /* HomeDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3773BD61E1BB019007DB1EE /* HomeDetailCell.xib */; };
 		B3773BDD1E1BB019007DB1EE /* HomeHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3773BD71E1BB019007DB1EE /* HomeHeaderCell.swift */; };
 		B3773BDE1E1BB019007DB1EE /* HomeHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3773BD81E1BB019007DB1EE /* HomeHeaderCell.xib */; };
+		B3E41F6E1E1CDD5000DD3C42 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = B3E41F651E1CDD5000DD3C42 /* .gitkeep */; };
+		B3E41F6F1E1CDD5000DD3C42 /* EMEmojiableBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E41F671E1CDD5000DD3C42 /* EMEmojiableBtn.m */; };
+		B3E41F701E1CDD5000DD3C42 /* EMEmojiableBtnConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E41F691E1CDD5000DD3C42 /* EMEmojiableBtnConfig.m */; };
+		B3E41F711E1CDD5000DD3C42 /* EMEmojiableInformationView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E41F6B1E1CDD5000DD3C42 /* EMEmojiableInformationView.m */; };
+		B3E41F721E1CDD5000DD3C42 /* EMEmojiableOption.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E41F6D1E1CDD5000DD3C42 /* EMEmojiableOption.m */; };
+		B3E41F741E1CDD6200DD3C42 /* Facebook.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3E41F731E1CDD6200DD3C42 /* Facebook.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -123,6 +129,16 @@
 		B3773BD61E1BB019007DB1EE /* HomeDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeDetailCell.xib; sourceTree = "<group>"; };
 		B3773BD71E1BB019007DB1EE /* HomeHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeHeaderCell.swift; sourceTree = "<group>"; };
 		B3773BD81E1BB019007DB1EE /* HomeHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeHeaderCell.xib; sourceTree = "<group>"; };
+		B3E41F651E1CDD5000DD3C42 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		B3E41F661E1CDD5000DD3C42 /* EMEmojiableBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMEmojiableBtn.h; sourceTree = "<group>"; };
+		B3E41F671E1CDD5000DD3C42 /* EMEmojiableBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMEmojiableBtn.m; sourceTree = "<group>"; };
+		B3E41F681E1CDD5000DD3C42 /* EMEmojiableBtnConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMEmojiableBtnConfig.h; sourceTree = "<group>"; };
+		B3E41F691E1CDD5000DD3C42 /* EMEmojiableBtnConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMEmojiableBtnConfig.m; sourceTree = "<group>"; };
+		B3E41F6A1E1CDD5000DD3C42 /* EMEmojiableInformationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMEmojiableInformationView.h; sourceTree = "<group>"; };
+		B3E41F6B1E1CDD5000DD3C42 /* EMEmojiableInformationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMEmojiableInformationView.m; sourceTree = "<group>"; };
+		B3E41F6C1E1CDD5000DD3C42 /* EMEmojiableOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMEmojiableOption.h; sourceTree = "<group>"; };
+		B3E41F6D1E1CDD5000DD3C42 /* EMEmojiableOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMEmojiableOption.m; sourceTree = "<group>"; };
+		B3E41F731E1CDD6200DD3C42 /* Facebook.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Facebook.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -269,6 +285,8 @@
 		B3773BD21E1BAFC7007DB1EE /* Emoji Facebook\ */ = {
 			isa = PBXGroup;
 			children = (
+				B3E41F731E1CDD6200DD3C42 /* Facebook.xcassets */,
+				B3E41F641E1CDD5000DD3C42 /* Classes */,
 				B3773BCE1E1BAFC3007DB1EE /* JOEmojiableBtn.swift */,
 				B3773BCF1E1BAFC3007DB1EE /* SelectorView.swift */,
 			);
@@ -286,6 +304,22 @@
 				B3773BD81E1BB019007DB1EE /* HomeHeaderCell.xib */,
 			);
 			name = Cell;
+			sourceTree = "<group>";
+		};
+		B3E41F641E1CDD5000DD3C42 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B3E41F651E1CDD5000DD3C42 /* .gitkeep */,
+				B3E41F661E1CDD5000DD3C42 /* EMEmojiableBtn.h */,
+				B3E41F671E1CDD5000DD3C42 /* EMEmojiableBtn.m */,
+				B3E41F681E1CDD5000DD3C42 /* EMEmojiableBtnConfig.h */,
+				B3E41F691E1CDD5000DD3C42 /* EMEmojiableBtnConfig.m */,
+				B3E41F6A1E1CDD5000DD3C42 /* EMEmojiableInformationView.h */,
+				B3E41F6B1E1CDD5000DD3C42 /* EMEmojiableInformationView.m */,
+				B3E41F6C1E1CDD5000DD3C42 /* EMEmojiableOption.h */,
+				B3E41F6D1E1CDD5000DD3C42 /* EMEmojiableOption.m */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -359,6 +393,8 @@
 				A4E50EA71E1B4B2100ECCE04 /* CalendarVC.xib in Resources */,
 				B3773BDC1E1BB019007DB1EE /* HomeDetailCell.xib in Resources */,
 				A4E50E831E1B4A2200ECCE04 /* Main.storyboard in Resources */,
+				B3E41F6E1E1CDD5000DD3C42 /* .gitkeep in Resources */,
+				B3E41F741E1CDD6200DD3C42 /* Facebook.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,6 +422,8 @@
 				A4E50EAD1E1B4E4500ECCE04 /* TabbarVC.swift in Sources */,
 				B3773BC91E1B9D1A007DB1EE /* CVSet.swift in Sources */,
 				A4E50EA21E1B4B1200ECCE04 /* SearchVC.swift in Sources */,
+				B3E41F721E1CDD5000DD3C42 /* EMEmojiableOption.m in Sources */,
+				B3E41F711E1CDD5000DD3C42 /* EMEmojiableInformationView.m in Sources */,
 				B3773BB91E1B9D1A007DB1EE /* CVCalendarTouchController.swift in Sources */,
 				B3773BCB1E1B9D1A007DB1EE /* CVStatus.swift in Sources */,
 				B3773BB21E1B9D1A007DB1EE /* CVCalendarDayView.swift in Sources */,
@@ -398,6 +436,8 @@
 				B3773BC11E1B9D1A007DB1EE /* CVCalendarWeekContentViewController.swift in Sources */,
 				B3773BC41E1B9D1A007DB1EE /* CVDate.swift in Sources */,
 				B3773BB01E1B9D1A007DB1EE /* CVAuxiliaryView.swift in Sources */,
+				B3E41F701E1CDD5000DD3C42 /* EMEmojiableBtnConfig.m in Sources */,
+				B3E41F6F1E1CDD5000DD3C42 /* EMEmojiableBtn.m in Sources */,
 				B3773BB71E1B9D1A007DB1EE /* CVCalendarMonthContentViewController.swift in Sources */,
 				B3773BB51E1B9D1A007DB1EE /* CVCalendarMenuView.swift in Sources */,
 				A4E50E9E1E1B4B0600ECCE04 /* HomeVC.swift in Sources */,
