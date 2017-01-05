@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
@@ -81,17 +80,9 @@
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="5fY-KO-vpo">
-                    <rect key="frame" x="8" y="140" width="304" height="100"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="100" id="20w-cE-L2O"/>
-                    </constraints>
-                    <connections>
-                        <outlet property="delegate" destination="-1" id="vqO-Ce-hxE"/>
-                    </connections>
-                </mapView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="See Map" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hh0-IZ-xoh">
                     <rect key="frame" x="266" y="118" width="46" height="14"/>
+                    <gestureRecognizers/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -108,14 +99,29 @@
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="5fY-KO-vpo">
+                    <rect key="frame" x="8" y="140" width="304" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="20w-cE-L2O"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="vqO-Ce-hxE"/>
+                    </connections>
+                </mapView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ujU-ss-6IB">
+                    <rect key="frame" x="8" y="140" width="304" height="100"/>
+                    <connections>
+                        <action selector="gotoMap:" destination="-1" eventType="touchUpInside" id="i1l-aO-Axe"/>
+                    </connections>
+                </button>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="DNt-G0-lxG">
                     <rect key="frame" x="8" y="272" width="304" height="288"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vnZ-dW-nZe">
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vnZ-dW-nZe">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="YyR-TH-oix"/>
@@ -126,9 +132,11 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="JFP-g9-lf8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="0fb-qr-d9U"/>
+                <constraint firstItem="ujU-ss-6IB" firstAttribute="top" secondItem="5fY-KO-vpo" secondAttribute="top" id="0tS-eW-ITI"/>
                 <constraint firstAttribute="trailing" secondItem="pCQ-Ed-laW" secondAttribute="trailing" constant="8" id="1hX-XG-bnB"/>
                 <constraint firstItem="pCQ-Ed-laW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="3cf-17-vs7"/>
                 <constraint firstItem="pCQ-Ed-laW" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="6YO-sG-jcr"/>
+                <constraint firstItem="ujU-ss-6IB" firstAttribute="bottom" secondItem="5fY-KO-vpo" secondAttribute="bottom" id="7lv-Fs-53v"/>
                 <constraint firstItem="UbY-O8-i8c" firstAttribute="top" secondItem="pCQ-Ed-laW" secondAttribute="bottom" constant="8" id="8LK-6h-MQi"/>
                 <constraint firstAttribute="trailing" secondItem="5fY-KO-vpo" secondAttribute="trailing" constant="8" id="Lhb-qy-EdF"/>
                 <constraint firstItem="DNt-G0-lxG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="MRf-m2-ECU"/>
@@ -141,7 +149,9 @@
                 <constraint firstItem="DNt-G0-lxG" firstAttribute="top" secondItem="JFP-g9-lf8" secondAttribute="bottom" constant="8" id="q0m-wH-gca"/>
                 <constraint firstItem="5fY-KO-vpo" firstAttribute="top" secondItem="hh0-IZ-xoh" secondAttribute="bottom" constant="8" id="rTO-0f-geo"/>
                 <constraint firstItem="DNt-G0-lxG" firstAttribute="top" secondItem="bXm-xU-iup" secondAttribute="bottom" constant="8" id="t5K-uS-rND"/>
+                <constraint firstItem="ujU-ss-6IB" firstAttribute="trailing" secondItem="5fY-KO-vpo" secondAttribute="trailing" id="uaB-9D-p9d"/>
                 <constraint firstItem="UbY-O8-i8c" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="vT8-ES-pux"/>
+                <constraint firstItem="ujU-ss-6IB" firstAttribute="leading" secondItem="5fY-KO-vpo" secondAttribute="leading" id="ygz-eP-Zg7"/>
                 <constraint firstAttribute="trailing" secondItem="hh0-IZ-xoh" secondAttribute="trailing" constant="8" id="zeu-Q8-vU7"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

@@ -14,11 +14,6 @@ private enum SuggestCell:String {
     case SuggestCell = "searchCell"
 }
 
-private let numberOfItemPerRowPortrait : CGFloat = 3.0
-private let numberOfItemPerRowLandscape : CGFloat = 5.0
-private let leftAndRightPaddingsPortrait: CGFloat = 8.0 * ( numberOfItemPerRowPortrait + 1 )
-private let leftAndRightPaddingsLandscape: CGFloat = 8.0 * ( numberOfItemPerRowLandscape + 1 )
-
 class SearchVC: UIViewController {
 
     var searchController : UISearchController!
@@ -31,20 +26,24 @@ class SearchVC: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        topConstraint.constant = (navigationController?.navigationBar.frame.size.height)!
+        // set constraint
+        topConstraint.constant = (navigationController?.navigationBar.frame.size.height)! + UIApplication.sharedApplication().statusBarFrame.size.height + 8
         bottomConstraint.constant = (tabBarController?.tabBar.frame.size.height)!
         view.layoutIfNeeded()
+        
+        // set collectionView
+        guard let flowLayout = clvSuggest.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+        
+        let width = clvSuggest.frame.size.height
+        flowLayout.itemSize = CGSizeMake(width, width)
+        
+        flowLayout.invalidateLayout()
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        guard let flowLayout = clvSuggest.collectionViewLayout as? UICollectionViewFlowLayout else { return }
         
-        let width = ( CGRectGetWidth(clvSuggest.frame) - leftAndRightPaddingsLandscape ) / numberOfItemPerRowLandscape
-        flowLayout.itemSize = CGSizeMake(width, width)
-        
-        flowLayout.invalidateLayout()
     }
     
     override func viewDidLoad() {
@@ -90,6 +89,10 @@ class SearchVC: UIViewController {
     }
     */
 
+    @IBAction func gotoMap(sender: AnyObject) {
+        let mapVC = MapVC(nibName: "MapVC", bundle: nil)
+        navigationController?.pushViewController(mapVC, animated: true)
+    }
 }
 
 extension SearchVC : UICollectionViewDataSource {
@@ -104,7 +107,13 @@ extension SearchVC : UICollectionViewDataSource {
 }
 
 extension SearchVC : UICollectionViewDelegate {
-    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        collectionView.deselectItemAtIndexPath(indexPath, animated: true)
+        
+        let detail = DetailVC(nibName: "DetailVC", bundle: nil)
+        navigationController?.pushViewController(detail, animated: true)
+        
+    }
 }
 
 extension SearchVC : UISearchControllerDelegate {
