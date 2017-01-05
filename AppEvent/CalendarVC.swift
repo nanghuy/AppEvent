@@ -242,39 +242,19 @@ extension CalendarVC : UITableViewDataSource {
         }
         
         return header
-  
-        
-//        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 18))
-//        headerView.backgroundColor = UIColor.groupTableViewBackgroundColor()
-//        headerView.layer.borderColor = UIColor.lightGrayColor().CGColor
-//        headerView.layer.borderWidth = 1
-//        
-//        let lbTitle = UILabel(frame: CGRect(x: headerView.frame.origin.x+8, y: headerView.frame.origin.y, width: headerView.frame.size.width - 8, height: headerView.frame.size.height))
-//        lbTitle.textColor = UIColor.lightGrayColor()
-//        lbTitle.textAlignment = NSTextAlignment.Center
-//
-//        switch section {
-//        case 0:
-//            lbTitle.text = "5/1/2017"
-//        case 1:
-//            lbTitle.text = "7/1/2017"
-//        default:
-//            lbTitle.text = ""
-//        }
-//        
-//        headerView.addSubview(lbTitle)
-//        
-//        return headerView
     }
 }
 
 extension CalendarVC : UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let mainVC = DetailVC(nibName:"DetailVC", bundle:nil)
+        self.navigationController!.pushViewController(mainVC, animated: true);
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 65
     }
+    
     
 }
 
