@@ -65,7 +65,9 @@ extension HomeVC : UITableViewDataSource {
         case 0:
             return 1
         case 1:
-            return 3
+            return 10
+        case 2:
+            return 10
         default:
             return 2
         }
@@ -74,22 +76,16 @@ extension HomeVC : UITableViewDataSource {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier(NameCell.HeaderCell.rawValue, forIndexPath: indexPath) as! HomeHeaderCell
             
-            //            if indexPath.row % 2 == 0 {
-            //                cell.imgTemperature.image = UIImage.init(named: "Rain")
-            //                cell.lblTitle.text = "Da Nang"
-            //            } else {
-            //                cell.lblTitle.text = "HCM City"
-            //            }
+                        if indexPath.row % 2 == 0 {
+                            cell.imgTemperature.image = UIImage.init(named: "Rain")
+                            cell.lblTitle.text = "Da Nang"
+                        } else {
+                            cell.lblTitle.text = "HCM City"
+                        }
             
             return cell
         }
-//        else if indexPath.row == 2 {
-//            let cell = tableView.dequeueReusableCellWithIdentifier(NameCell.HomeDetailCell.rawValue, forIndexPath: indexPath) as! HomeDetailCell
-//            
-//            return cell
-//        }
-
-        else {
+        else if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCellWithIdentifier(NameCell.HomeTitleCell.rawValue, forIndexPath: indexPath) as! HomeTitleCell
             
             if indexPath.row == 0 {
@@ -104,6 +100,12 @@ extension HomeVC : UITableViewDataSource {
             
             return cell
         }
+        else {
+//            let cell = tableView.dequeueReusableCellWithIdentifier(NameCell.HomeDetailCell.rawValue, forIndexPath: indexPath) as! HomeDetailCell
+            
+            return UITableViewCell()
+        }
+
     }
 }
 
@@ -116,9 +118,9 @@ extension HomeVC : UITableViewDelegate {
         case 0:
             return 44
         case 1:
-            return 65
-        case 2:
-            return 0
+            return 64
+//        case 2:
+//            return 377
         default:
             return 0
         }
