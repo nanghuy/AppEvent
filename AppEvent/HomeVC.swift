@@ -58,14 +58,14 @@ class HomeVC: UIViewController {
 
 extension HomeVC : UITableViewDataSource {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
             return 1
         case 1:
-            return 10
+            return 3
         case 2:
             return 10
         default:
@@ -76,16 +76,16 @@ extension HomeVC : UITableViewDataSource {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier(NameCell.HeaderCell.rawValue, forIndexPath: indexPath) as! HomeHeaderCell
             
-                        if indexPath.row % 2 == 0 {
-                            cell.imgTemperature.image = UIImage.init(named: "Rain")
-                            cell.lblTitle.text = "Da Nang"
-                        } else {
-                            cell.lblTitle.text = "HCM City"
-                        }
+            if indexPath.row % 2 == 0 {
+                cell.imgTemperature.image = UIImage.init(named: "Rain")
+                cell.lblTitle.text = "Da Nang"
+            } else {
+                cell.lblTitle.text = "HCM City"
+            }
             
             return cell
         }
-        else if indexPath.row == 1 {
+        else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCellWithIdentifier(NameCell.HomeTitleCell.rawValue, forIndexPath: indexPath) as! HomeTitleCell
             
             if indexPath.row == 0 {
@@ -101,11 +101,10 @@ extension HomeVC : UITableViewDataSource {
             return cell
         }
         else {
-//            let cell = tableView.dequeueReusableCellWithIdentifier(NameCell.HomeDetailCell.rawValue, forIndexPath: indexPath) as! HomeDetailCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(NameCell.HomeDetailCell.rawValue, forIndexPath: indexPath) as! HomeDetailCell
             
-            return UITableViewCell()
+            return cell
         }
-
     }
 }
 
@@ -118,9 +117,9 @@ extension HomeVC : UITableViewDelegate {
         case 0:
             return 44
         case 1:
-            return 64
-//        case 2:
-//            return 377
+            return 65
+        case 2:
+            return 333
         default:
             return 0
         }

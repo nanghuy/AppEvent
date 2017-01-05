@@ -10,10 +10,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="homeDetailCell" id="KGk-i7-Jjw" customClass="HomeDetailCell" customModule="AppEvent" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="377"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="333"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="376"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="332"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Avata" translatesAutoresizingMaskIntoConstraints="NO" id="iQf-6s-MHh">
@@ -51,14 +51,14 @@
                             <constraint firstAttribute="width" secondItem="mD7-m3-XdC" secondAttribute="height" id="5Sf-vs-gz5"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AvataEvent" translatesAutoresizingMaskIntoConstraints="NO" id="UaD-rN-UuZ">
-                        <rect key="frame" x="8" y="48" width="387" height="206"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AvataEvent" translatesAutoresizingMaskIntoConstraints="NO" id="UaD-rN-UuZ">
+                        <rect key="frame" x="8" y="48" width="304" height="162"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="UaD-rN-UuZ" secondAttribute="height" multiplier="15:8" id="GaW-RR-dO3"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b3f-u7-Hib">
-                        <rect key="frame" x="8" y="254" width="304" height="61"/>
+                        <rect key="frame" x="8" y="210" width="304" height="61"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4LH-2n-LY3">
                                 <rect key="frame" x="0.0" y="0.0" width="61" height="61"/>
@@ -137,24 +137,13 @@
                         </variation>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0fJ-kf-tVw">
-                        <rect key="frame" x="8" y="315" width="304" height="61"/>
+                        <rect key="frame" x="8" y="271" width="304" height="61"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="like" translatesAutoresizingMaskIntoConstraints="NO" id="fof-6y-rOx">
                                 <rect key="frame" x="0.0" y="8" width="14" height="14"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="fof-6y-rOx" secondAttribute="height" multiplier="1:1" id="Cz1-f8-7Kk"/>
                                 </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="love" translatesAutoresizingMaskIntoConstraints="NO" id="Mfy-QS-0qx">
-                                <rect key="frame" x="14" y="8" width="14" height="14"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Mfy-QS-0qx" secondAttribute="height" multiplier="1:1" id="Owi-Pp-4Vw"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="Owi-Pp-4Vw"/>
-                                    </mask>
-                                </variation>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="haha" translatesAutoresizingMaskIntoConstraints="NO" id="UBS-iJ-aTu">
                                 <rect key="frame" x="28" y="8" width="14" height="14"/>
@@ -284,6 +273,17 @@
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="love" translatesAutoresizingMaskIntoConstraints="NO" id="Mfy-QS-0qx">
+                                <rect key="frame" x="14" y="8" width="14" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Mfy-QS-0qx" secondAttribute="height" multiplier="1:1" id="Owi-Pp-4Vw"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Owi-Pp-4Vw"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.98356219440000003" blue="0.70799436179999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -325,6 +325,7 @@
                     <constraint firstItem="b3f-u7-Hib" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="5EP-iD-kj5"/>
                     <constraint firstItem="Uyo-Pb-cJ0" firstAttribute="leading" secondItem="iQf-6s-MHh" secondAttribute="trailing" constant="8" id="ACK-g6-qBs"/>
                     <constraint firstItem="jho-m8-XCD" firstAttribute="leading" secondItem="Uyo-Pb-cJ0" secondAttribute="leading" id="AW7-OU-yxm"/>
+                    <constraint firstItem="0fJ-kf-tVw" firstAttribute="top" secondItem="b3f-u7-Hib" secondAttribute="bottom" id="CTf-hv-LY8"/>
                     <constraint firstItem="mD7-m3-XdC" firstAttribute="bottom" secondItem="jho-m8-XCD" secondAttribute="bottom" id="Doj-0x-nBV"/>
                     <constraint firstAttribute="trailing" secondItem="b3f-u7-Hib" secondAttribute="trailing" constant="8" id="EYw-Z3-XZD"/>
                     <constraint firstItem="iQf-6s-MHh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Emc-0G-0Xd"/>
@@ -355,6 +356,8 @@
                         <exclude reference="g02-St-Td3"/>
                         <exclude reference="EYw-Z3-XZD"/>
                         <exclude reference="Lya-bi-fFA"/>
+                        <exclude reference="MUo-aD-1dS"/>
+                        <exclude reference="grA-n8-O05"/>
                         <exclude reference="s9L-Tv-JP9"/>
                     </mask>
                 </variation>
