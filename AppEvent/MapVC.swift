@@ -15,7 +15,7 @@ private enum MapSuggestCell:String {
 
 class MapVC: UIViewController {
 
-    @IBOutlet weak var clvSuggest: UICollectionView!
+    @IBOutlet weak var clvSuggestMap: UICollectionView!
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     
     override func viewDidLayoutSubviews() {
@@ -23,15 +23,16 @@ class MapVC: UIViewController {
         
         // set constraint
         if let navi = navigationController {
-            topConstraint.constant = navi.navigationBar.frame.size.height + UIApplication.sharedApplication().statusBarFrame.size.height
+            topConstraint.constant = navi.navigationBar.frame.size.height + UIApplication.sharedApplication().statusBarFrame.size.height+100
             view.layoutIfNeeded()
         }
         
         // set collectionView
-        guard let flowLayout = clvSuggest.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+        guard let flowLayout = clvSuggestMap.collectionViewLayout as? UICollectionViewFlowLayout else { return }
         
-        let width = clvSuggest.frame.size.height
-        flowLayout.itemSize = CGSizeMake(100, width)
+        let height = clvSuggestMap.frame.size.height
+        print("height",height)
+        flowLayout.itemSize = CGSizeMake(height, height)
         
         flowLayout.invalidateLayout()
     }
@@ -41,7 +42,8 @@ class MapVC: UIViewController {
         // Do any additional setup after loading the view.
         
         // regist cell
-        clvSuggest.registerNib(UINib.init(nibName: MapSuggestCell.MapSuggest.rawValue, bundle: nil), forCellWithReuseIdentifier: MapSuggestCell.MapSuggestCell.rawValue)
+        //clvSuggestMap.registerNib(UINib.init(nibName: MapSuggestCell.MapSuggest.rawValue, bundle: nil), forCellWithReuseIdentifier: MapSuggestCell.MapSuggestCell.rawValue)
+        clvSuggestMap.registerNib(UINib.init(nibName: "SearchCell", bundle: nil), forCellWithReuseIdentifier: "searchCell")
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,11 +70,15 @@ extension MapVC : UICollectionViewDataSource {
         return 10
     }
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(MapSuggestCell.MapSuggestCell.rawValue, forIndexPath: indexPath) as! MapSuggest
+//        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(MapSuggestCell.MapSuggestCell.rawValue, forIndexPath: indexPath) as! MapSuggest
+//        
+//        cell.setup(2)
+//        print("aaaaaaaaa")
+//        
+//        
+//        return cell
         
-//        cell.setup(indexPath.item)
-        print("aaaaaaaaa")
-        
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("searchCell", forIndexPath: indexPath) as! SearchCell
         
         return cell
     }

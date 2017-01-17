@@ -35,6 +35,7 @@ class SearchVC: UIViewController {
         guard let flowLayout = clvSuggest.collectionViewLayout as? UICollectionViewFlowLayout else { return }
         
         let width = clvSuggest.frame.size.height
+        print("width",width)
         flowLayout.itemSize = CGSizeMake(width, width)
         
         flowLayout.invalidateLayout()

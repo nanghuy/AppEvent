@@ -6,8 +6,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapVC" customModule="AppEvent" customModuleProvider="target">
             <connections>
-                <outlet property="clvSuggest" destination="pq9-dI-u2e" id="RMi-5e-h7B"/>
-                <outlet property="topConstraint" destination="Tgc-hZ-Ctu" id="J8u-I9-p5Y"/>
+                <outlet property="clvSuggestMap" destination="2QK-9o-EV0" id="wCa-Wo-Szc"/>
+                <outlet property="topConstraint" destination="L3X-Na-Vnl" id="umv-4X-6mv"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,29 +16,29 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="pq9-dI-u2e">
-                    <rect key="frame" x="8" y="0.0" width="304" height="40"/>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="2QK-9o-EV0">
+                    <rect key="frame" x="8" y="0.0" width="304" height="200"/>
                     <color key="backgroundColor" red="1" green="0.98356219440000003" blue="0.70799436179999997" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="uJG-EO-0za"/>
+                        <constraint firstAttribute="height" constant="200" id="njz-xj-1oz"/>
                     </constraints>
-                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bug-IN-Ybo">
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Fiw-Cv-YGa">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                     <connections>
-                        <outlet property="dataSource" destination="-1" id="XVD-Fa-uFu"/>
-                        <outlet property="delegate" destination="-1" id="j3h-Jb-0BJ"/>
+                        <outlet property="dataSource" destination="-1" id="K6f-B4-sx7"/>
+                        <outlet property="delegate" destination="-1" id="AFr-0X-Hty"/>
                     </connections>
                 </collectionView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="pq9-dI-u2e" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="4FZ-s0-PeI"/>
-                <constraint firstItem="pq9-dI-u2e" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Tgc-hZ-Ctu"/>
-                <constraint firstAttribute="trailing" secondItem="pq9-dI-u2e" secondAttribute="trailing" constant="8" id="zAB-Cf-YzY"/>
+                <constraint firstAttribute="trailing" secondItem="2QK-9o-EV0" secondAttribute="trailing" constant="8" id="5Iz-cC-MlB"/>
+                <constraint firstItem="2QK-9o-EV0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="HrE-A0-sFW"/>
+                <constraint firstItem="2QK-9o-EV0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="L3X-Na-Vnl"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>

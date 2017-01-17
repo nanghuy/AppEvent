@@ -74,7 +74,7 @@ extension HomeVC : UITableViewDataSource {
         case 0:
             return 1
         case 1:
-            return 3
+            return 1
         case 2:
             return 5
         default:
