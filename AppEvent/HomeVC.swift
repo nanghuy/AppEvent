@@ -51,6 +51,7 @@ class HomeVC: UIViewController {
         // Commit 3
         // Commit 4
         // commit 5
+        // commit 6
     }
     
     override func didReceiveMemoryWarning() {
