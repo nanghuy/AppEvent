@@ -45,6 +45,8 @@ class HomeVC: UIViewController {
         tbvHome.registerNib(UINib.init(nibName: NameCell.Header.rawValue, bundle: nil), forCellReuseIdentifier: NameCell.HeaderCell.rawValue)
         tbvHome.registerNib(UINib.init(nibName: NameCell.Title.rawValue, bundle: nil), forCellReuseIdentifier: NameCell.HomeTitleCell.rawValue)
         tbvHome.registerNib(UINib.init(nibName: NameCell.Detail.rawValue, bundle: nil), forCellReuseIdentifier: NameCell.HomeDetailCell.rawValue)
+        
+        // Commit 1
     }
     
     override func didReceiveMemoryWarning() {
