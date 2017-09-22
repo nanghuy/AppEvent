@@ -30,61 +30,61 @@ extension UIImageView {
 
     /// Used to wrap all `UIView` animation transition options alongside a duration.
     public enum ImageTransition {
-        case None
-        case CrossDissolve(NSTimeInterval)
-        case CurlDown(NSTimeInterval)
-        case CurlUp(NSTimeInterval)
-        case FlipFromBottom(NSTimeInterval)
-        case FlipFromLeft(NSTimeInterval)
-        case FlipFromRight(NSTimeInterval)
-        case FlipFromTop(NSTimeInterval)
-        case Custom(
-            duration: NSTimeInterval,
+        case none
+        case crossDissolve(TimeInterval)
+        case curlDown(TimeInterval)
+        case curlUp(TimeInterval)
+        case flipFromBottom(TimeInterval)
+        case flipFromLeft(TimeInterval)
+        case flipFromRight(TimeInterval)
+        case flipFromTop(TimeInterval)
+        case custom(
+            duration: TimeInterval,
             animationOptions: UIViewAnimationOptions,
             animations: (UIImageView, Image) -> Void,
-            completion: (Bool -> Void)?
+            completion: ((Bool) -> Void)?
         )
 
-        private var duration: NSTimeInterval {
+        fileprivate var duration: TimeInterval {
             switch self {
-            case None:                          return 0.0
-            case CrossDissolve(let duration):   return duration
-            case CurlDown(let duration):        return duration
-            case CurlUp(let duration):          return duration
-            case FlipFromBottom(let duration):  return duration
-            case FlipFromLeft(let duration):    return duration
-            case FlipFromRight(let duration):   return duration
-            case FlipFromTop(let duration):     return duration
-            case Custom(let duration, _, _, _): return duration
+            case .none:                          return 0.0
+            case .crossDissolve(let duration):   return duration
+            case .curlDown(let duration):        return duration
+            case .curlUp(let duration):          return duration
+            case .flipFromBottom(let duration):  return duration
+            case .flipFromLeft(let duration):    return duration
+            case .flipFromRight(let duration):   return duration
+            case .flipFromTop(let duration):     return duration
+            case .custom(let duration, _, _, _): return duration
             }
         }
 
-        private var animationOptions: UIViewAnimationOptions {
+        fileprivate var animationOptions: UIViewAnimationOptions {
             switch self {
-            case None:                                  return .TransitionNone
-            case CrossDissolve:                         return .TransitionCrossDissolve
-            case CurlDown:                              return .TransitionCurlDown
-            case CurlUp:                                return .TransitionCurlUp
-            case FlipFromBottom:                        return .TransitionFlipFromBottom
-            case FlipFromLeft:                          return .TransitionFlipFromLeft
-            case FlipFromRight:                         return .TransitionFlipFromRight
-            case FlipFromTop:                           return .TransitionFlipFromTop
-            case Custom(_, let animationOptions, _, _): return animationOptions
+            case .none:                                  return UIViewAnimationOptions()
+            case .crossDissolve:                         return .transitionCrossDissolve
+            case .curlDown:                              return .transitionCurlDown
+            case .curlUp:                                return .transitionCurlUp
+            case .flipFromBottom:                        return .transitionFlipFromBottom
+            case .flipFromLeft:                          return .transitionFlipFromLeft
+            case .flipFromRight:                         return .transitionFlipFromRight
+            case .flipFromTop:                           return .transitionFlipFromTop
+            case .custom(_, let animationOptions, _, _): return animationOptions
             }
         }
 
-        private var animations: ((UIImageView, Image) -> Void) {
+        fileprivate var animations: ((UIImageView, Image) -> Void) {
             switch self {
-            case Custom(_, _, let animations, _):
+            case .custom(_, _, let animations, _):
                 return animations
             default:
                 return { $0.image = $1 }
             }
         }
 
-        private var completion: (Bool -> Void)? {
+        fileprivate var completion: ((Bool) -> Void)? {
             switch self {
-            case Custom(_, _, _, let completion):
+            case .custom(_, _, _, let completion):
                 return completion
             default:
                 return nil
@@ -94,7 +94,7 @@ extension UIImageView {
 
     // MARK: - Private - AssociatedKeys
 
-    private struct AssociatedKeys {
+    fileprivate struct AssociatedKeys {
         static var ImageDownloaderKey = "af_UIImageView.ImageDownloader"
         static var SharedImageDownloaderKey = "af_UIImageView.SharedImageDownloader"
         static var ActiveRequestReceiptKey = "af_UIImageView.ActiveRequestReceipt"
@@ -153,12 +153,12 @@ extension UIImageView {
                                       image view will not change its image until the image request finishes. `nil` by 
                                       default.
     */
-    public func af_setImageWithURL(URL: NSURL, placeholderImage: UIImage? = nil) {
+    public func af_setImageWithURL(_ URL: Foundation.URL, placeholderImage: UIImage? = nil) {
         af_setImageWithURLRequest(
             URLRequestWithURL(URL),
             placeholderImage: placeholderImage,
             filter: nil,
-            imageTransition: .None,
+            imageTransition: .none,
             completion: nil
         )
     }
@@ -176,12 +176,12 @@ extension UIImageView {
                                       default.
         - parameter filter:           The image filter applied to the image after the image request is finished.
     */
-    public func af_setImageWithURL(URL: NSURL, placeholderImage: UIImage? = nil, filter: ImageFilter) {
+    public func af_setImageWithURL(_ URL: Foundation.URL, placeholderImage: UIImage? = nil, filter: ImageFilter) {
         af_setImageWithURLRequest(
             URLRequestWithURL(URL),
             placeholderImage: placeholderImage,
             filter: filter,
-            imageTransition: .None,
+            imageTransition: .none,
             completion: nil
         )
     }
@@ -199,7 +199,7 @@ extension UIImageView {
                                       default.
         - parameter imageTransition:  The image transition animation applied to the image when set.
     */
-    public func af_setImageWithURL(URL: NSURL, placeholderImage: UIImage? = nil, imageTransition: ImageTransition) {
+    public func af_setImageWithURL(_ URL: Foundation.URL, placeholderImage: UIImage? = nil, imageTransition: ImageTransition) {
         af_setImageWithURLRequest(
             URLRequestWithURL(URL),
             placeholderImage: placeholderImage,
@@ -223,7 +223,7 @@ extension UIImageView {
         - parameter imageTransition:  The image transition animation applied to the image when set.
     */
     public func af_setImageWithURL(
-        URL: NSURL,
+        _ URL: Foundation.URL,
         placeholderImage: UIImage?,
         filter: ImageFilter?,
         imageTransition: ImageTransition)
@@ -261,11 +261,11 @@ extension UIImageView {
                                       If the image was returned from the image cache, the response will be `nil`.
     */
     public func af_setImageWithURL(
-        URL: NSURL,
+        _ URL: Foundation.URL,
         placeholderImage: UIImage?,
         filter: ImageFilter?,
         imageTransition: ImageTransition,
-        completion: (Response<UIImage, NSError> -> Void)?)
+        completion: ((Response<UIImage, NSError>) -> Void)?)
     {
         af_setImageWithURLRequest(
             URLRequestWithURL(URL),
@@ -300,11 +300,11 @@ extension UIImageView {
                                       If the image was returned from the image cache, the response will be `nil`.
     */
     public func af_setImageWithURLRequest(
-        URLRequest: URLRequestConvertible,
+        _ URLRequest: URLRequestConvertible,
         placeholderImage: UIImage?,
         filter: ImageFilter?,
         imageTransition: ImageTransition,
-        completion: (Response<UIImage, NSError> -> Void)?)
+        completion: ((Response<UIImage, NSError>) -> Void)?)
     {
         guard !isURLRequestURLEqualToActiveRequestURL(URLRequest) else { return }
 
@@ -319,7 +319,7 @@ extension UIImageView {
                 request: URLRequest.URLRequest,
                 response: nil,
                 data: nil,
-                result: .Success(image)
+                result: .success(image)
             )
 
             completion?(response)
@@ -347,8 +347,8 @@ extension UIImageView {
                 strongSelf.af_activeRequestReceipt = nil
 
                 if let image = response.result.value {
-                    UIView.transitionWithView(
-                        strongSelf,
+                    UIView.transition(
+                        with: strongSelf,
                         duration: imageTransition.duration,
                         options: imageTransition.animationOptions,
                         animations: {
@@ -379,17 +379,16 @@ extension UIImageView {
 
     // MARK: - Private - URL Request Helper Methods
 
-    private func URLRequestWithURL(URL: NSURL) -> NSURLRequest {
-        let mutableURLRequest = NSMutableURLRequest(URL: URL)
+    fileprivate func URLRequestWithURL(_ URL: Foundation.URL) -> URLRequest {
+        let mutableURLRequest = NSMutableURLRequest(url: URL)
         mutableURLRequest.addValue("image/*", forHTTPHeaderField: "Accept")
 
-        return mutableURLRequest
+        return mutableURLRequest as URLRequest
     }
 
-    private func isURLRequestURLEqualToActiveRequestURL(URLRequest: URLRequestConvertible?) -> Bool {
+    fileprivate func isURLRequestURLEqualToActiveRequestURL(_ URLRequest: URLRequestConvertible?) -> Bool {
         if let
-            currentRequest = af_activeRequestReceipt?.request.task.originalRequest
-            where currentRequest.URLString == URLRequest?.URLRequest.URLString
+            currentRequest = af_activeRequestReceipt?.request.task.originalRequest, currentRequest.URLString == URLRequest?.URLRequest.URLString
         {
             return true
         }

@@ -27,7 +27,7 @@ class SearchVC: UIViewController {
         super.viewDidLayoutSubviews()
         
         // set constraint
-        topConstraint.constant = (navigationController?.navigationBar.frame.size.height)! + UIApplication.sharedApplication().statusBarFrame.size.height + 8
+        topConstraint.constant = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height + 8
         bottomConstraint.constant = (tabBarController?.tabBar.frame.size.height)!
         view.layoutIfNeeded()
         
@@ -36,7 +36,7 @@ class SearchVC: UIViewController {
         
         let width = clvSuggest.frame.size.height
         print("width",width)
-        flowLayout.itemSize = CGSizeMake(width, width)
+        flowLayout.itemSize = CGSize(width: width, height: width)
         
         flowLayout.invalidateLayout()
     }
@@ -66,7 +66,7 @@ class SearchVC: UIViewController {
         self.definesPresentationContext = true
 
         // Regist cell
-        clvSuggest.registerNib(UINib.init(nibName: SuggestCell.Suggest.rawValue, bundle: nil), forCellWithReuseIdentifier: SuggestCell.SuggestCell.rawValue)
+        clvSuggest.register(UINib.init(nibName: SuggestCell.Suggest.rawValue, bundle: nil), forCellWithReuseIdentifier: SuggestCell.SuggestCell.rawValue)
     }
 
     override func didReceiveMemoryWarning() {
@@ -74,7 +74,7 @@ class SearchVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
 
@@ -90,26 +90,26 @@ class SearchVC: UIViewController {
     }
     */
 
-    @IBAction func gotoMap(sender: AnyObject) {
+    @IBAction func gotoMap(_ sender: AnyObject) {
         let mapVC = MapVC(nibName: "MapVC", bundle: nil)
         navigationController?.pushViewController(mapVC, animated: true)
     }
 }
 
 extension SearchVC : UICollectionViewDataSource {
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
     }
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(SuggestCell.SuggestCell.rawValue, forIndexPath: indexPath) as! SearchCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SuggestCell.SuggestCell.rawValue, for: indexPath) as! SearchCell
         
         return cell
     }
 }
 
 extension SearchVC : UICollectionViewDelegate {
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        collectionView.deselectItemAtIndexPath(indexPath, animated: true)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
         
         let detail = DetailVC(nibName: "DetailVC", bundle: nil)
         navigationController?.pushViewController(detail, animated: true)
@@ -126,7 +126,7 @@ extension SearchVC : UISearchBarDelegate {
 }
 
 extension SearchVC : UISearchResultsUpdating {
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController) {
         
     }
 }

@@ -29,25 +29,25 @@ import UIKit
 /// Pre-build UI components
 struct Components {
     struct reactionSelect {
-        static func reactionIcon(option: Reaction) -> CALayer {
+        static func reactionIcon(_ option: Reaction) -> CALayer {
             return CALayer().build {
-                $0.contents = option.icon.CGImage
+                $0.contents = option.icon.cgImage
             }
         }
         
-        static func reactionLabel(option: Reaction, height: CGFloat) -> UILabel {
+        static func reactionLabel(_ option: Reaction, height: CGFloat) -> UILabel {
             let title = option.title
-            let font  = UIFont(name: "HelveticaNeue", size: 10) ?? .systemFontOfSize(10)
+            let font  = UIFont(name: "HelveticaNeue", size: 10) ?? .systemFont(ofSize: 10)
             
             let size       = CGSize(width: 200, height: 200)
             let attributes = [NSFontAttributeName: font] as [String: AnyObject]
-            let bounds     = title.boundingRectWithSize(size, options: [], attributes: attributes, context: nil)
+            let bounds     = title.boundingRect(with: size, options: [], attributes: attributes, context: nil)
             
             return UILabel().build {
                 $0.text                = title
                 $0.font                = font
-                $0.textAlignment       = .Center
-                $0.textColor           = .whiteColor()
+                $0.textAlignment       = .center
+                $0.textColor           = .white
                 $0.backgroundColor     = UIColor(white: 0, alpha: 0.7)
                 $0.alpha               = 0
                 $0.frame               = CGRect(x: 0, y: 0, width: bounds.width + height / 2, height: height)
@@ -58,7 +58,7 @@ struct Components {
         
         static func backgroundLayer() -> CAShapeLayer {
             return CAShapeLayer().build {
-                $0.fillColor     = UIColor.whiteColor().CGColor
+                $0.fillColor     = UIColor.white.cgColor
                 $0.shadowOffset  = CGSize(width: 0, height: 1)
                 $0.shadowOpacity = 0.1
             }
@@ -68,7 +68,7 @@ struct Components {
     struct reactionButton {
         static func facebookLikeIcon() -> UIImageView {
             return UIImageView().build {
-                $0.contentMode = .ScaleAspectFit
+                $0.contentMode = .scaleAspectFit
             }
         }
         

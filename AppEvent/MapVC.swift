@@ -23,7 +23,7 @@ class MapVC: UIViewController {
         
         // set constraint
         if let navi = navigationController {
-            topConstraint.constant = navi.navigationBar.frame.size.height + UIApplication.sharedApplication().statusBarFrame.size.height+100
+            topConstraint.constant = navi.navigationBar.frame.size.height + UIApplication.shared.statusBarFrame.size.height+100
             view.layoutIfNeeded()
         }
         
@@ -32,7 +32,7 @@ class MapVC: UIViewController {
         
         let height = clvSuggestMap.frame.size.height
         print("height",height)
-        flowLayout.itemSize = CGSizeMake(height, height)
+        flowLayout.itemSize = CGSize(width: height, height: height)
         
         flowLayout.invalidateLayout()
     }
@@ -43,7 +43,7 @@ class MapVC: UIViewController {
         
         // regist cell
         //clvSuggestMap.registerNib(UINib.init(nibName: MapSuggestCell.MapSuggest.rawValue, bundle: nil), forCellWithReuseIdentifier: MapSuggestCell.MapSuggestCell.rawValue)
-        clvSuggestMap.registerNib(UINib.init(nibName: "SearchCell", bundle: nil), forCellWithReuseIdentifier: "searchCell")
+        clvSuggestMap.register(UINib.init(nibName: "SearchCell", bundle: nil), forCellWithReuseIdentifier: "searchCell")
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,11 +65,11 @@ class MapVC: UIViewController {
 }
 
 extension MapVC : UICollectionViewDataSource {
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print("bbbbbbbbb")
         return 10
     }
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 //        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(MapSuggestCell.MapSuggestCell.rawValue, forIndexPath: indexPath) as! MapSuggest
 //        
 //        cell.setup(2)
@@ -78,15 +78,15 @@ extension MapVC : UICollectionViewDataSource {
 //        
 //        return cell
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("searchCell", forIndexPath: indexPath) as! SearchCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "searchCell", for: indexPath) as! SearchCell
         
         return cell
     }
 }
 
 extension MapVC : UICollectionViewDelegate {
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        collectionView.deselectItemAtIndexPath(indexPath, animated: true)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
         
         print("cccccccc")
     }

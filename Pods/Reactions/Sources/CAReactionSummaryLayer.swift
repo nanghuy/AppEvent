@@ -31,13 +31,13 @@ private extension CATextLayer {
     func layoutWithConfig(_ config: ReactionSummaryConfig) {
         font            = config.font
         fontSize        = config.font.pointSize
-        foregroundColor = config.textColor.CGColor
+        foregroundColor = config.textColor.cgColor
     }
 }
 
 /// Convenience layer to draw the summary icon and labels
 final class CAReactionSummaryLayer: CALayer {
-    private var reactionsLayers: [(CALayer, CATextLayer)] = [] {
+    fileprivate var reactionsLayers: [(CALayer, CATextLayer)] = [] {
         didSet {
             for (iconLayer, textLayer) in oldValue {
                 iconLayer.removeFromSuperlayer()
@@ -53,19 +53,19 @@ final class CAReactionSummaryLayer: CALayer {
         }
     }
     
-    private var reactionPairs: [(Reaction, Int)] = [] {
+    fileprivate var reactionPairs: [(Reaction, Int)] = [] {
         didSet {
             reactionsLayers = reactionPairs.map({
                 let iconLayer           = CALayer()
-                iconLayer.contents      = $0.0.icon.CGImage
+                iconLayer.contents      = $0.0.icon.cgImage
                 iconLayer.masksToBounds = true
-                iconLayer.borderColor   = UIColor.whiteColor().CGColor
+                iconLayer.borderColor   = UIColor.white.cgColor
                 iconLayer.borderWidth   = 2
-                iconLayer.contentsScale = UIScreen.mainScreen().scale
+                iconLayer.contentsScale = UIScreen.main.scale
                 
                 let textLayer           = CATextLayer()
                 textLayer.string        = "\($0.1)"
-                textLayer.contentsScale = UIScreen.mainScreen().scale
+                textLayer.contentsScale = UIScreen.main.scale
                 
                 return (iconLayer, textLayer)
             })
@@ -90,19 +90,19 @@ final class CAReactionSummaryLayer: CALayer {
     
     // MARK: - Providing the Layer’s Content
     
-    override func drawInContext(ctx: CGContext) {
-        super.drawInContext(ctx)
+    override func draw(in ctx: CGContext) {
+        super.draw(in: ctx)
         
-        for (index, (iconLayer, textLayer)) in reactionsLayers.enumerate() {
+        for (index, (iconLayer, textLayer)) in reactionsLayers.enumerated() {
             let rect = reactionFrameAt(index)
             
-            textLayer.hidden = config.isAggregated
+            textLayer.isHidden = config.isAggregated
             
             updateIconLayer(iconLayer, textLayer: textLayer, in: rect)
         }
     }
     
-    private func updateIconLayer(_ iconLayer: CALayer, textLayer: CATextLayer, in rect: CGRect) {
+    fileprivate func updateIconLayer(_ iconLayer: CALayer, textLayer: CATextLayer, in rect: CGRect) {
         var iconFrame        = rect
         iconFrame.size.width = iconFrame.height
         
@@ -133,7 +133,7 @@ final class CAReactionSummaryLayer: CALayer {
         return CGSize(width: width, height: bounds.height)
     }
     
-    private func reactionFrameAt(_ index: Int) -> CGRect {
+    fileprivate func reactionFrameAt(_ index: Int) -> CGRect {
         guard index >= 0 else { return .zero }
         
         let iconHeight = bounds.height - config.iconMarging * 2
@@ -152,7 +152,7 @@ final class CAReactionSummaryLayer: CALayer {
         return CGRect(x: offsetX, y: config.iconMarging, width: iconHeight + textSize.width, height: iconHeight)
     }
     
-    private func sizeForText(_ text: String) -> CGSize {
+    fileprivate func sizeForText(_ text: String) -> CGSize {
         let attributedText = NSAttributedString(string: text, attributes: [
             NSFontAttributeName: config.font,
             NSForegroundColorAttributeName: config.textColor

@@ -65,14 +65,14 @@ extension Reaction {
         
         // MARK: - Convenience Methods
         
-        private static func reactionWithId(_ id: String) -> Reaction {
-            var color: UIColor            = .blackColor()
+        fileprivate static func reactionWithId(_ id: String) -> Reaction {
+            var color: UIColor            = .black
             var alternativeIcon: UIImage? = nil
             
             switch id {
             case "like":
                 color           = UIColor(red: 0.29, green: 0.54, blue: 0.95, alpha: 1)
-                alternativeIcon = imageWithName("like-template").imageWithRenderingMode(.AlwaysTemplate)
+                alternativeIcon = imageWithName("like-template").withRenderingMode(.alwaysTemplate)
             case "love":
                 color = UIColor(red: 0.93, green: 0.23, blue: 0.33, alpha: 1)
             case "angry":
@@ -84,8 +84,8 @@ extension Reaction {
             return Reaction(id: id, title: id.localized(from: "FacebookReactionLocalizable"), color: color, icon: imageWithName(id), alternativeIcon: alternativeIcon)
         }
         
-        private static func imageWithName(_ name: String) -> UIImage {
-            return UIImage(named: name, inBundle: .reactionsBundle(), compatibleWithTraitCollection: nil)!
+        fileprivate static func imageWithName(_ name: String) -> UIImage {
+            return UIImage(named: name, in: .reactionsBundle(), compatibleWith: nil)!
         }
     }
 }

@@ -32,8 +32,8 @@ import UIKit
  You can configure/skin the summary using a `ReactionSummaryConfig`.
  */
 public final class ReactionSummary: UIReactionControl {
-    private let textLabel    = UILabel()
-    private var summaryLayer = CAReactionSummaryLayer()
+    fileprivate let textLabel    = UILabel()
+    fileprivate var summaryLayer = CAReactionSummaryLayer()
     
     /**
      The reaction summary configuration.
@@ -125,7 +125,7 @@ public final class ReactionSummary: UIReactionControl {
         updateComponentFrame()
     }
     
-    private func updateComponentConfig() {
+    fileprivate func updateComponentConfig() {
         textLabel.font      = config.font
         textLabel.textColor = config.textColor
         summaryLayer.frame  = bounds
@@ -133,13 +133,13 @@ public final class ReactionSummary: UIReactionControl {
         
         switch config.alignment {
         case .left, .centerLeft:
-            textLabel.lineBreakMode = .ByTruncatingTail
+            textLabel.lineBreakMode = .byTruncatingTail
         case .right, .centerRight:
-            textLabel.lineBreakMode = .ByTruncatingHead
+            textLabel.lineBreakMode = .byTruncatingHead
         }
     }
     
-    private func updateComponentFrame() {
+    fileprivate func updateComponentFrame() {
         let textLabelSize    = textLabel.sizeThatFits(bounds.size)
         let summaryLayerSize = summaryLayer.sizeToFit()
         
@@ -171,6 +171,6 @@ public final class ReactionSummary: UIReactionControl {
     // MARK: - Responding to Gesture Events
     
     func tapAction(_ gestureRecognizer: UITapGestureRecognizer) {
-        sendActionsForControlEvents(.TouchUpInside)
+        sendActions(for: .touchUpInside)
     }
 }

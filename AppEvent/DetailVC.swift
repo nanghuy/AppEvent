@@ -25,7 +25,7 @@ class DetailVC: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSBundle.mainBundle().loadNibNamed("DetailVC", owner: self, options: nil)
+        Bundle.main.loadNibNamed("DetailVC", owner: self, options: nil)
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(DetailVC.handleTapAbout(_:)))
         viewAbout.addGestureRecognizer(tap)
@@ -34,24 +34,24 @@ class DetailVC: UITabBarController {
         viewDicussion.addGestureRecognizer(tapDis)
     }
     
-    func handleTapAbout(sender: UITapGestureRecognizer? = nil) {
+    func handleTapAbout(_ sender: UITapGestureRecognizer? = nil) {
         self.viewAboutLine.backgroundColor = UIColor(red: 255/255, green: 0, blue: 128/255, alpha: 1.0)
         self.lbViewAbout.textColor = UIColor(red: 255/255, green: 0, blue: 128/255, alpha: 1.0)
-        self.viewDiscussionLine.backgroundColor = UIColor.clearColor()
-        self.lbDiscussion.textColor = UIColor.blackColor()
+        self.viewDiscussionLine.backgroundColor = UIColor.clear
+        self.lbDiscussion.textColor = UIColor.black
     }
-    func handleTapDiscussion(sender: UITapGestureRecognizer? = nil) {
+    func handleTapDiscussion(_ sender: UITapGestureRecognizer? = nil) {
         self.viewDiscussionLine.backgroundColor = UIColor(red: 255/255, green: 0, blue: 128/255, alpha: 1.0)
         self.lbDiscussion.textColor = UIColor(red: 255/255, green: 0, blue: 128/255, alpha: 1.0)
-        self.viewAboutLine.backgroundColor = UIColor.clearColor()
-        self.lbViewAbout.textColor = UIColor.blackColor()
+        self.viewAboutLine.backgroundColor = UIColor.clear
+        self.lbViewAbout.textColor = UIColor.black
     }
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         super.viewWillAppear(animated)
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
         super.viewWillDisappear(animated)
     }
@@ -59,16 +59,16 @@ class DetailVC: UITabBarController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    func didMoveToPage(controller: UIViewController, index: Int){
+    func didMoveToPage(_ controller: UIViewController, index: Int){
         print(index)
     }
     
-    @IBAction func backAction(sender: AnyObject) {
-        self.navigationController!.popViewControllerAnimated(true)
+    @IBAction func backAction(_ sender: AnyObject) {
+        self.navigationController!.popViewController(animated: true)
 
     }
     
-    @IBAction func searchAction(sender: AnyObject) {
+    @IBAction func searchAction(_ sender: AnyObject) {
     }
     
 }

@@ -33,17 +33,17 @@ class HomeDetailCell: UITableViewCell {
         // Conforming to the ReactionFeedbackDelegate
         select.feedbackDelegate = self
         // React to reaction change
-        select.addTarget(self, action: #selector(self.reactionDidChanged(_:)), forControlEvents: .ValueChanged)
+        select.addTarget(self, action: #selector(self.reactionDidChanged(_:)), for: .valueChanged)
         
         let button      = ReactionButton()
         button.frame.size = viewLike.frame.size
-        button.backgroundColor = UIColor.whiteColor()
+        button.backgroundColor = UIColor.white
         button.reaction = Reaction.facebook.like
         button.config           = ReactionButtonConfig() {
             $0.iconMarging      = 6
             $0.spacing          = 8
             $0.font             = UIFont(name: "HelveticaNeue", size: 13)
-            $0.neutralTintColor = UIColor.lightGrayColor()
+            $0.neutralTintColor = UIColor.lightGray
             $0.alignment        = .centerLeft
         }
         //        button.addTarget(self, action: #selector(self.reactionDidChanged(_:)), forControlEvents: .TouchUpInside)
@@ -53,19 +53,19 @@ class HomeDetailCell: UITableViewCell {
         viewLike.addSubview(button)
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
     
-    func reactionDidChanged(sender: AnyObject) {
+    func reactionDidChanged(_ sender: AnyObject) {
         print("sender:",sender)
     }
 }
 
 extension HomeDetailCell: ReactionFeedbackDelegate {
-    func reactionFeedbackDidChanged(feedback: ReactionFeedback?) {
+    func reactionFeedbackDidChanged(_ feedback: ReactionFeedback?) {
         print("feedback",feedback)
     }
 }

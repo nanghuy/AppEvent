@@ -32,7 +32,7 @@ protocol Configurable {
    The builder block.
    The block gives a reference of receiver you can configure.
    */
-  typealias ConfigurableBlock = (Self) -> Void
+  associatedtype ConfigurableBlock = (Self) -> Void
 
   /**
    Initialize a configurable with default values.

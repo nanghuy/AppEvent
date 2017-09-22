@@ -41,14 +41,14 @@ public struct JOEmojiableOption{
 }
 
 public protocol JOEmojiableDelegate{
-    func selectedOption(sender:JOEmojiableBtn,index:Int)
-    func singleTap(sender:JOEmojiableBtn)
-    func canceledAction(sender:JOEmojiableBtn)
+    func selectedOption(_ sender:JOEmojiableBtn,index:Int)
+    func singleTap(_ sender:JOEmojiableBtn)
+    func canceledAction(_ sender:JOEmojiableBtn)
 }
 
-public class JOEmojiableBtn: UIButton {
-    public var delegate:JOEmojiableDelegate!
-    public var dataset:[JOEmojiableOption]!
+open class JOEmojiableBtn: UIButton {
+    open var delegate:JOEmojiableDelegate!
+    open var dataset:[JOEmojiableOption]!
     
     var longTap:UILongPressGestureRecognizer!
     var singleTap:UITapGestureRecognizer!
@@ -106,7 +106,7 @@ public class JOEmojiableBtn: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func initialize(){
+    fileprivate func initialize(){
         longTap = UILongPressGestureRecognizer(target: self, action: #selector(JOEmojiableBtn.longTapEvent))
         singleTap = UITapGestureRecognizer(target: self, action: #selector(JOEmojiableBtn.singleTapEvent))
         self.addGestureRecognizer(longTap)
@@ -126,19 +126,19 @@ public class JOEmojiableBtn: UIButton {
     /**
      Function that open the Options Selector
      */
-    private func activate(){
+    fileprivate func activate(){
         if !active {
             if dataset != nil {
-                let frameSV = UIScreen.mainScreen().bounds
+                let frameSV = UIScreen.main.bounds
                 selectedItem = -1
                 active = true
                 bgClear = SelectorView(frame: frameSV)
                 bgClear.delegate = self
-                bgClear.backgroundColor = UIColor.clearColor()
+                bgClear.backgroundColor = UIColor.clear
                 
-                UIApplication.sharedApplication()
+                UIApplication.shared
                 
-                origin = self.superview?.convertPoint(self.frame.origin, toView: nil)
+                origin = self.superview?.convert(self.frame.origin, to: nil)
 
                 if origin != self.frame.origin {
                     bgClear.frame.origin.x -= origin.x
@@ -148,26 +148,26 @@ public class JOEmojiableBtn: UIButton {
                 self.superview?.addSubview(bgClear)
                 
                 let sizeBtn:CGSize = CGSize(width: ((CGFloat(dataset.count+1)*spacing)+(size*CGFloat(dataset.count))), height: size+(2*spacing))
-                options = UIView(frame: CGRectMake(origin.x, origin.y - (sizeBtn.height), sizeBtn.width, sizeBtn.height))
+                options = UIView(frame: CGRect(x: origin.x, y: origin.y - (sizeBtn.height), width: sizeBtn.width, height: sizeBtn.height))
                 options.layer.cornerRadius  = options.frame.height/2
-                options.backgroundColor     = UIColor.whiteColor()
-                options.layer.shadowColor   = UIColor.lightGrayColor().CGColor
+                options.backgroundColor     = UIColor.white
+                options.layer.shadowColor   = UIColor.lightGray.cgColor
                 options.layer.shadowOffset  = CGSize(width: 0.0, height: 0.0)
                 options.layer.shadowOpacity = 0.5
                 options.alpha               = 0.3
                 bgClear.addSubview(options)
                 
-                UIView.animateWithDuration(0.2, animations: { () -> Void in
+                UIView.animate(withDuration: 0.2, animations: { () -> Void in
                     self.options.frame.origin.y = self.origin.y - (self.s_options_selector+sizeBtn.height)
                     self.options.alpha          = 1
                 })
                 
                 for i in 0 ..< dataset.count {
-                    let option = UIImageView(frame: CGRectMake((CGFloat(i+1)*spacing)+(size*CGFloat(i)),sizeBtn.height*1.2,10,10))
+                    let option = UIImageView(frame: CGRect(x: (CGFloat(i+1)*spacing)+(size*CGFloat(i)),y: sizeBtn.height*1.2,width: 10,height: 10))
                     option.image = UIImage(named: dataset[i].image)
                     option.alpha = 0.6
                     options.addSubview(option)
-                    UIView.animateWithDuration(0.2, delay: 0.05*Double(i), options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+                    UIView.animate(withDuration: 0.2, delay: 0.05*Double(i), options: UIViewAnimationOptions(), animations: { () -> Void in
                         option.frame.origin.y       = self.spacing
                         option.alpha                = 1
                         option.frame.size           = CGSize(width: self.size, height: self.size)
@@ -175,8 +175,8 @@ public class JOEmojiableBtn: UIButton {
                     }, completion: nil)
                 }
                 
-                information = InformationView(frame: CGRectMake(0, origin.y, frameSV.width, self.frame.height))
-                information.backgroundColor = UIColor.whiteColor()
+                information = InformationView(frame: CGRect(x: 0, y: origin.y, width: frameSV.width, height: self.frame.height))
+                information.backgroundColor = UIColor.white
                 bgClear.addSubview(information)
             }
             else{
@@ -188,9 +188,9 @@ public class JOEmojiableBtn: UIButton {
     /**
      Function that close the Options Selector
      */
-    private func deActivate(optionIdx:Int){
-        for (i,option) in self.options.subviews.enumerate(){
-            UIView.animateWithDuration(0.2, delay: 0.05*Double(i), options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+    fileprivate func deActivate(_ optionIdx:Int){
+        for (i,option) in self.options.subviews.enumerated(){
+            UIView.animate(withDuration: 0.2, delay: 0.05*Double(i), options: UIViewAnimationOptions(), animations: { () -> Void in
                 self.information.alpha = 0
                 option.alpha      = 0.3
                 option.frame.size = CGSize(width: 10, height: 10)
@@ -201,7 +201,7 @@ public class JOEmojiableBtn: UIButton {
                 }
                 }, completion:  { (finished) -> Void in
                     if finished && i == (self.dataset.count/2){
-                        UIView.animateWithDuration(0.1, animations: { () -> Void in
+                        UIView.animate(withDuration: 0.1, animations: { () -> Void in
                                 self.options.alpha          = 0
                                 self.options.frame.origin.y = self.origin.y - (self.size+(2*self.spacing))
                             },completion:  { (finished) -> Void in
@@ -218,44 +218,44 @@ public class JOEmojiableBtn: UIButton {
         }
     }
     
-    private func loseFocus(){
+    fileprivate func loseFocus(){
         selectedItem = -1
         information.activateInfo(true)
-        UIView.animateWithDuration(0.3) { () -> Void in
+        UIView.animate(withDuration: 0.3, animations: { () -> Void in
             let sizeBtn:CGSize = CGSize(width: ((CGFloat(self.dataset.count+1)*self.spacing)+(self.size*CGFloat(self.dataset.count))), height: self.size+(2*self.spacing))
-            self.options.frame = CGRectMake(self.origin.x, self.origin.y - (self.s_options_selector+sizeBtn.height), sizeBtn.width, sizeBtn.height)
+            self.options.frame = CGRect(x: self.origin.x, y: self.origin.y - (self.s_options_selector+sizeBtn.height), width: sizeBtn.width, height: sizeBtn.height)
             self.options.layer.cornerRadius = sizeBtn.height/2
-            for (idx,view) in self.options.subviews.enumerate(){
-                view.frame = CGRectMake((CGFloat(idx+1)*self.spacing)+(self.size*CGFloat(idx)),self.spacing,self.size,self.size)
+            for (idx,view) in self.options.subviews.enumerated(){
+                view.frame = CGRect(x: (CGFloat(idx+1)*self.spacing)+(self.size*CGFloat(idx)),y: self.spacing,width: self.size,height: self.size)
             }
-        }
+        }) 
     }
     
-    func selectIndex(index:Int){
+    func selectIndex(_ index:Int){
         if index >= 0 && index < dataset.count{
             selectedItem = index
             information.activateInfo(false)
-            UIView.animateWithDuration(0.3) { () -> Void in
+            UIView.animate(withDuration: 0.3, animations: { () -> Void in
                 let sizeBtn:CGSize = CGSize(width: ((CGFloat(self.dataset.count-1)*self.spacing)+(self.minSize*CGFloat(self.dataset.count-1))+self.maxSize), height: self.minSize+(2*self.spacing))
-                self.options.frame = CGRectMake(self.origin.x, self.origin.y - (self.s_options_selector+sizeBtn.height), sizeBtn.width, sizeBtn.height)
+                self.options.frame = CGRect(x: self.origin.x, y: self.origin.y - (self.s_options_selector+sizeBtn.height), width: sizeBtn.width, height: sizeBtn.height)
                 self.options.layer.cornerRadius = sizeBtn.height/2
                 var last:CGFloat = index != 0 ? self.spacing : 0
-                for (idx,view) in self.options.subviews.enumerate(){
+                for (idx,view) in self.options.subviews.enumerated(){
                     switch(idx){
                         case (index-1):
-                            view.frame    = CGRectMake(last,self.spacing,self.minSize,self.minSize)
+                            view.frame    = CGRect(x: last,y: self.spacing,width: self.minSize,height: self.minSize)
                             view.center.y = (self.minSize/2) + self.spacing
                             last          += self.minSize
                         case (index):
-                            view.frame    = CGRectMake(last, -(self.maxSize/2), self.maxSize, self.maxSize)
+                            view.frame    = CGRect(x: last, y: -(self.maxSize/2), width: self.maxSize, height: self.maxSize)
                             last          += self.maxSize
                         default:
-                            view.frame    = CGRectMake(last,self.spacing,self.minSize,self.minSize)
+                            view.frame    = CGRect(x: last,y: self.spacing,width: self.minSize,height: self.minSize)
                             view.center.y = (self.minSize/2) + self.spacing
                             last          += self.minSize + self.spacing
                     }
                 }
-            }
+            }) 
         }
     }
 
@@ -267,7 +267,7 @@ public class JOEmojiableBtn: UIButton {
      
      - parameter point: user's touch point
      */
-    public func movedTo(point:CGPoint){
+    public func movedTo(_ point:CGPoint){
         let t = options.frame.width/CGFloat(dataset.count)
         if (point.y < (options.frame.minY - 50) || point.y > (information.frame.maxY + 30)){
             loseFocus()
@@ -280,7 +280,7 @@ public class JOEmojiableBtn: UIButton {
         }
     }
     
-    public func endTouch(point:CGPoint){
+    public func endTouch(_ point:CGPoint){
         if (point.x > 0 && point.x < options.frame.maxX){
                 self.deActivate(selectedItem)
         }else{
@@ -289,13 +289,13 @@ public class JOEmojiableBtn: UIButton {
     }
 }
 
-public class InformationView :UIView{
-    private var textInformation:UILabel!
-    public override func drawRect(rect: CGRect) {
+open class InformationView :UIView{
+    fileprivate var textInformation:UILabel!
+    open override func draw(_ rect: CGRect) {
         let dots = UIBezierPath()
-        dots.moveToPoint(CGPointMake(18.5, (rect.height/2)))
-        dots.addLineToPoint(CGPointMake(rect.width, (rect.height/2)))
-        dots.lineCapStyle = CGLineCap.Round
+        dots.move(to: CGPoint(x: 18.5, y: (rect.height/2)))
+        dots.addLine(to: CGPoint(x: rect.width, y: (rect.height/2)))
+        dots.lineCapStyle = CGLineCap.round
         UIColor(red:0.8, green:0.81, blue:0.82, alpha:1).setStroke()
         dots.lineWidth = 3
         let dashes: [CGFloat] = [dots.lineWidth * 0, 37]
@@ -303,30 +303,30 @@ public class InformationView :UIView{
         dots.stroke()
         
         let lineSuperior = UIBezierPath()
-        lineSuperior.moveToPoint(CGPointMake(0,0))
-        lineSuperior.addLineToPoint(CGPointMake(rect.width,0))
+        lineSuperior.move(to: CGPoint(x: 0,y: 0))
+        lineSuperior.addLine(to: CGPoint(x: rect.width,y: 0))
         UIColor(red:0.8, green:0.81, blue:0.82, alpha:1).setStroke()
         lineSuperior.lineWidth = 1
         lineSuperior.stroke()
         
         let lineInferior = UIBezierPath()
-        lineInferior.moveToPoint(CGPointMake(0,rect.height))
-        lineInferior.addLineToPoint(CGPointMake(rect.width,rect.height))
+        lineInferior.move(to: CGPoint(x: 0,y: rect.height))
+        lineInferior.addLine(to: CGPoint(x: rect.width,y: rect.height))
         UIColor(red:0.8, green:0.81, blue:0.82, alpha:1).setStroke()
         lineInferior.lineWidth = 1
         lineInferior.stroke()
         
-        textInformation                 = UILabel(frame: CGRectMake(0,1,rect.width,rect.height-2))
-        textInformation.backgroundColor = UIColor.whiteColor()
+        textInformation                 = UILabel(frame: CGRect(x: 0,y: 1,width: rect.width,height: rect.height-2))
+        textInformation.backgroundColor = UIColor.white
         textInformation.textColor       = UIColor(red:0.57, green:0.59, blue:0.64, alpha:1)
         textInformation.text            = "Release to Cancel"
-        textInformation.textAlignment   = .Center
-        textInformation.font            = UIFont.boldSystemFontOfSize(12)
+        textInformation.textAlignment   = .center
+        textInformation.font            = UIFont.boldSystemFont(ofSize: 12)
         textInformation.alpha           = 0
         self.addSubview(textInformation)
     }
     
-    func activateInfo(active:Bool){
+    func activateInfo(_ active:Bool){
         textInformation.alpha = active ? 1 : 0
     }
 }

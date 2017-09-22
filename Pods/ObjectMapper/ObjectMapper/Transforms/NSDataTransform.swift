@@ -28,23 +28,23 @@
 
 import Foundation
 
-public class NSDataTransform: TransformType {
-	public typealias Object = NSData
+open class NSDataTransform: TransformType {
+	public typealias Object = Data
 	public typealias JSON = String
 	
 	public init() {}
 	
-	public func transformFromJSON(value: AnyObject?) -> NSData? {
+	open func transformFromJSON(_ value: AnyObject?) -> Data? {
 		guard let string = value as? String else{
 			return nil
 		}
-		return NSData(base64EncodedString: string, options: [])
+		return Data(base64Encoded: string, options: [])
 	}
 	
-	public func transformToJSON(value: NSData?) -> String? {
+	open func transformToJSON(_ value: Data?) -> String? {
 		guard let data = value else{
 			return nil
 		}
-		return data.base64EncodedStringWithOptions([])
+		return data.base64EncodedString(options: [])
 	}
 }

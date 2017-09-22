@@ -85,12 +85,12 @@ public final class ReactionSelectorConfig: Configurable {
         let topMargin     = isHighlighted ? spacing * 2 : spacing
         let iconSize      = computedIconSize(highlighted: isHighlighted)
         
-        if let hi = highlightedIndex where index == hi {
+        if let hi = highlightedIndex, index == hi {
             let highlightedSize = computedHighlightedIconSizeInBounds(bounds, reactionCount: reactionCount)
             
             return CGRect(x: (iconSize + spacing) * fi, y: bounds.height - highlightedSize - spacing, width: highlightedSize, height: highlightedSize)
         }
-        else if let hi = highlightedIndex where index > hi {
+        else if let hi = highlightedIndex, index > hi {
             let highlightedSize = computedHighlightedIconSizeInBounds(bounds, reactionCount: reactionCount)
             
             return CGRect(x: (iconSize + spacing) * (fi - 1) + highlightedSize, y: topMargin, width: iconSize, height: iconSize)

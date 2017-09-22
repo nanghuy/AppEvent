@@ -36,10 +36,10 @@ import UIKit
  You can configure/skin the button using a `ReactionSelectorConfig`.
  */
 public final class ReactionSelector: UIReactionControl {
-    private var reactionIconLayers: [CALayer] = []
-    private var reactionLabels: [UILabel]     = []
-    private let backgroundLayer               = Components.reactionSelect.backgroundLayer()
-    private var _reactions: [Reaction]        = Reaction.facebook.all
+    fileprivate var reactionIconLayers: [CALayer] = []
+    fileprivate var reactionLabels: [UILabel]     = []
+    fileprivate let backgroundLayer               = Components.reactionSelect.backgroundLayer()
+    fileprivate var _reactions: [Reaction]        = Reaction.facebook.all
     
     /**
      The reactions available in the selector.
@@ -82,15 +82,15 @@ public final class ReactionSelector: UIReactionControl {
     
     // MARK: - Managing Internal State
     
-    private var stateHighlightedReactionIndex: Int?
-    private var stateSelectedReaction: Reaction?
+    fileprivate var stateHighlightedReactionIndex: Int?
+    fileprivate var stateSelectedReaction: Reaction?
     
     /// The selected reaction.
     public var selectedReaction: Reaction? {
         get { return stateSelectedReaction }
         set {
-            if let reaction = newValue where config.stickyReaction {
-                stateHighlightedReactionIndex = reactions.indexOf(reaction)
+            if let reaction = newValue, config.stickyReaction {
+                stateHighlightedReactionIndex = reactions.index(of: reaction)
             }
             else {
                 stateHighlightedReactionIndex = nil
@@ -118,7 +118,7 @@ public final class ReactionSelector: UIReactionControl {
                 })
             
             let backgroundBounds = boundsToFit()
-            backgroundLayer.path = UIBezierPath(roundedRect: backgroundBounds, cornerRadius: backgroundBounds.height / 2).CGPath
+            backgroundLayer.path = UIBezierPath(roundedRect: backgroundBounds, cornerRadius: backgroundBounds.height / 2).cgPath
             
             layer.addSublayer(backgroundLayer)
         }
@@ -131,7 +131,7 @@ public final class ReactionSelector: UIReactionControl {
     
     override func update() {
         let backgroundBounds = config.computedBounds(bounds, highlighted: stateHighlightedReactionIndex != nil)
-        let backgroundPath   = UIBezierPath(roundedRect: backgroundBounds, cornerRadius: backgroundBounds.height / 2).CGPath
+        let backgroundPath   = UIBezierPath(roundedRect: backgroundBounds, cornerRadius: backgroundBounds.height / 2).cgPath
         
         CATransaction.begin()
         CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut))
@@ -142,10 +142,10 @@ public final class ReactionSelector: UIReactionControl {
         let pathAnimation = CABasicAnimation(keyPath: "path").build {
             $0.toValue               = backgroundPath
             $0.fillMode              = kCAFillModeBoth
-            $0.removedOnCompletion = false
+            $0.isRemovedOnCompletion = false
         }
         
-        backgroundLayer.addAnimation(pathAnimation, forKey: "morhingPath")
+        backgroundLayer.add(pathAnimation, forKey: "morhingPath")
         
         for index in 0 ..< reactionIconLayers.count {
             updateReactionAtIndex(index, highlighted: stateHighlightedReactionIndex == index)
@@ -154,15 +154,15 @@ public final class ReactionSelector: UIReactionControl {
         CATransaction.commit()
     }
     
-    private func updateReactionAtIndex(_ index: Int, highlighted isHighlighted: Bool) {
+    fileprivate func updateReactionAtIndex(_ index: Int, highlighted isHighlighted: Bool) {
         let icon: CALayer                    = reactionIconLayers[index]
         let label: UILabel                   = reactionLabels[index]
         let labelAlpha: CGFloat              = isHighlighted ? 1 : 0
-        let labelTranform: CGAffineTransform = isHighlighted ? CGAffineTransformIdentity : CGAffineTransformMakeScale(0.5, 0.5)
+        let labelTranform: CGAffineTransform = isHighlighted ? CGAffineTransform.identity : CGAffineTransform(scaleX: 0.5, y: 0.5)
         
         icon.frame = config.computedIconFrameAtIndex(index, in: bounds, reactionCount: reactions.count, highlightedIndex: stateHighlightedReactionIndex)
         
-        UIView.animateWithDuration(CATransaction.animationDuration(), delay: 0, options:UIViewAnimationOptions.CurveEaseIn, animations: { [unowned self] in
+        UIView.animate(withDuration: CATransaction.animationDuration(), delay: 0, options:UIViewAnimationOptions.curveEaseIn, animations: { [unowned self] in
             label.alpha     = labelAlpha
             label.transform = labelTranform
             label.center    = CGPoint(x: icon.frame.midX, y: icon.frame.minY - label.bounds.height / 2 - self.config.spacing)
@@ -187,7 +187,7 @@ public final class ReactionSelector: UIReactionControl {
     // MARK: - Responding to Gesture Events
     
     func longPressAction(_ gestureRecognizer: UIGestureRecognizer) {
-        let location    = gestureRecognizer.locationInView(self)
+        let location    = gestureRecognizer.location(in: self)
         let touchIndex  = optionIndexFromPoint(location)
         let needsUpdate = touchIndex != stateHighlightedReactionIndex
         
@@ -197,45 +197,45 @@ public final class ReactionSelector: UIReactionControl {
             
             setNeedsLayout()
             
-            sendActionsForControlEvents(.ValueChanged)
+            sendActions(for: .valueChanged)
         }
         
-        if gestureRecognizer.state == .Began {
+        if gestureRecognizer.state == .began {
             feedback = .slideFingerAcross
         }
         
-        if gestureRecognizer.state == .Changed {
+        if gestureRecognizer.state == .changed {
             if needsUpdate {
                 let isInside = isPointInsideExtendedBounds(location)
                 
                 feedback = isInside ? .slideFingerAcross: .releaseToCancel
-                sendActionsForControlEvents(isInside ? .TouchDragEnter : .TouchDragExit)
+                sendActions(for: isInside ? .touchDragEnter : .touchDragExit)
             }
         }
-        else if gestureRecognizer.state != .Changed {
-            if gestureRecognizer.state == .Ended && !config.stickyReaction {
+        else if gestureRecognizer.state != .changed {
+            if gestureRecognizer.state == .ended && !config.stickyReaction {
                 stateHighlightedReactionIndex = nil
             }
             
             update()
             
-            if gestureRecognizer.state == .Ended {
+            if gestureRecognizer.state == .ended {
                 feedback = nil
                 
-                sendActionsForControlEvents(isPointInsideExtendedBounds(location) ? .TouchUpInside : .TouchUpOutside)
+                sendActions(for: isPointInsideExtendedBounds(location) ? .touchUpInside : .touchUpOutside)
             }
         }
     }
     
     // MARK: - Locating Points
     
-    private func isPointInsideExtendedBounds(_ location: CGPoint) -> Bool {
+    fileprivate func isPointInsideExtendedBounds(_ location: CGPoint) -> Bool {
         return CGRect(x: bounds.origin.x, y: -bounds.height, width: bounds.width, height: bounds.height * 3).contains(location)
     }
     
-    private func optionIndexFromPoint(_ location: CGPoint) -> Int? {
+    fileprivate func optionIndexFromPoint(_ location: CGPoint) -> Int? {
         if isPointInsideExtendedBounds(location) {
-            for (index, o) in reactionIconLayers.enumerate() {
+            for (index, o) in reactionIconLayers.enumerated() {
                 if o.frame.origin.x <= location.x && location.x <= (o.frame.origin.x + o.frame.width) {
                     return index
                 }

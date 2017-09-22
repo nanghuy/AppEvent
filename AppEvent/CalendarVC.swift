@@ -18,9 +18,9 @@ class CalendarVC: UIViewController {
     @IBOutlet weak var constraintBotton: NSLayoutConstraint!
     
     struct Color {
-        static let selectedText = UIColor.whiteColor()
-        static let text = UIColor.blackColor()
-        static let textDisabled = UIColor.grayColor()
+        static let selectedText = UIColor.white
+        static let text = UIColor.black
+        static let textDisabled = UIColor.gray
         static let selectionBackground = UIColor(red: 236/255, green: 0, blue: 56/255, alpha: 1.0)
         static let sundayText = text
         static let sundayTextDisabled = textDisabled
@@ -39,17 +39,17 @@ class CalendarVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let setting = UIBarButtonItem(image: UIImage(named: "Settings"), style: .Plain, target: self, action: #selector(settingCalendar))
-        let add = UIBarButtonItem(image: UIImage(named: "Plus"), style: .Plain, target: self, action: #selector(addEvent))
-        self.navigationController?.navigationBar.topItem?.title = CVDate(date: NSDate()).globalDescription
+        let setting = UIBarButtonItem(image: UIImage(named: "Settings"), style: .plain, target: self, action: #selector(settingCalendar))
+        let add = UIBarButtonItem(image: UIImage(named: "Plus"), style: .plain, target: self, action: #selector(addEvent))
+        self.navigationController?.navigationBar.topItem?.title = CVDate(date: Foundation.Date()).globalDescription
         
         self.navigationController?.navigationBar.topItem?.leftBarButtonItem = setting
         self.navigationController?.navigationBar.topItem?.rightBarButtonItem = add
         
         
-        tbvCalendar.registerNib(UINib.init(nibName: NameCell.Title.rawValue, bundle: nil), forCellReuseIdentifier: NameCell.HomeTitleCell.rawValue)
+        tbvCalendar.register(UINib.init(nibName: NameCell.Title.rawValue, bundle: nil), forCellReuseIdentifier: NameCell.HomeTitleCell.rawValue)
         let nib = UINib(nibName: "CalendarTableSectionHeader", bundle: nil)
-        tbvCalendar.registerNib(nib, forHeaderFooterViewReuseIdentifier: "CalendarTableSectionHeader")
+        tbvCalendar.register(nib, forHeaderFooterViewReuseIdentifier: "CalendarTableSectionHeader")
     }
     
     func settingCalendar(){
@@ -83,7 +83,7 @@ extension CalendarVC: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     
     /// Required method to implement!
     func presentationMode() -> CalendarMode {
-        return .MonthView
+        return .monthView
     }
     
     func shouldAutoSelectDayOnMonthChange() -> Bool {
@@ -91,13 +91,13 @@ extension CalendarVC: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     }
     /// Required method to implement!
     func firstWeekday() -> Weekday {
-        return .Sunday
+        return .sunday
     }
     
     // MARK: Optional methods
     
     func dayOfWeekTextColor(by weekday: Weekday) -> UIColor {
-        return UIColor.blackColor()
+        return UIColor.black
     }
     
     func shouldShowWeekdaysOut() -> Bool {
@@ -121,40 +121,40 @@ extension CalendarVC: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     }
     
     func dayOfWeekBackGroundColor() -> UIColor {
-        return UIColor.groupTableViewBackgroundColor()
+        return UIColor.groupTableViewBackground
     }
     
-    func didSelectDayView(dayView: DayView, animationDidFinish: Bool) {
+    func didSelectDayView(_ dayView: DayView, animationDidFinish: Bool) {
         print(dayView.date.day,", ",dayView.date.globalDescription)
         
         if dayView.date.day == 6 {
-            self.tbvCalendar.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+            self.tbvCalendar.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableViewScrollPosition.top, animated: true)
         }
         if dayView.date.day == 7 {
-            self.tbvCalendar.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+            self.tbvCalendar.scrollToRow(at: IndexPath(row: 0, section: 1), at: UITableViewScrollPosition.top, animated: true)
         }
 
     }
     
-    func presentedDateUpdated(date: CVDate) {
+    func presentedDateUpdated(_ date: CVDate) {
         
         if self.navigationController?.navigationBar.topItem?.title != date.globalDescription && self.animationFinished {
             let updatedMonthLabel = UILabel()
-            updatedMonthLabel.textAlignment = .Center
+            updatedMonthLabel.textAlignment = .center
             updatedMonthLabel.text = date.globalDescription
             updatedMonthLabel.sizeToFit()
             updatedMonthLabel.alpha = 0
             
             let offset = CGFloat(44)
-            updatedMonthLabel.transform = CGAffineTransformMakeTranslation(0, offset)
-            updatedMonthLabel.transform = CGAffineTransformMakeScale(1, 0.1)
+            updatedMonthLabel.transform = CGAffineTransform(translationX: 0, y: offset)
+            updatedMonthLabel.transform = CGAffineTransform(scaleX: 1, y: 0.1)
             
-            UIView.animateWithDuration(0.35, delay: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+            UIView.animate(withDuration: 0.35, delay: 0, options: UIViewAnimationOptions.curveEaseIn, animations: {
                 self.animationFinished = false
                 
                 
                 updatedMonthLabel.alpha = 1
-                updatedMonthLabel.transform = CGAffineTransformIdentity
+                updatedMonthLabel.transform = CGAffineTransform.identity
                 
             }) { _ in
                 
@@ -181,32 +181,32 @@ extension CalendarVC: CVCalendarViewAppearanceDelegate {
         return 2
     }
     
-    func dayLabelFont(by weekDay: Weekday, status: CVStatus, present: CVPresent) -> UIFont { return UIFont.systemFontOfSize(14) }
+    func dayLabelFont(by weekDay: Weekday, status: CVStatus, present: CVPresent) -> UIFont { return UIFont.systemFont(ofSize: 14) }
     
     func dayLabelColor(by weekDay: Weekday, status: CVStatus, present: CVPresent) -> UIColor? {
         switch (weekDay, status, present) {
-        case (_, .Selected, _), (_, .Highlighted, _): return Color.selectedText
-        case (.Sunday, .In, _): return Color.sundayText
-        case (.Sunday, _, _): return Color.sundayTextDisabled
-        case (_, .In, _): return Color.text
+        case (_, .selected, _), (_, .highlighted, _): return Color.selectedText
+        case (.sunday, .in, _): return Color.sundayText
+        case (.sunday, _, _): return Color.sundayTextDisabled
+        case (_, .in, _): return Color.text
         default: return Color.textDisabled
         }
     }
     
     func dayLabelBackgroundColor(by weekDay: Weekday, status: CVStatus, present: CVPresent) -> UIColor? {
         switch (weekDay, status, present) {
-        case (.Sunday, .Selected, _), (.Sunday, .Highlighted, _): return Color.sundaySelectionBackground
-        case (_, .Selected, _), (_, .Highlighted, _): return Color.selectionBackground
+        case (.sunday, .selected, _), (.sunday, .highlighted, _): return Color.sundaySelectionBackground
+        case (_, .selected, _), (_, .highlighted, _): return Color.selectionBackground
         default: return nil
         }
     }
 }
 
 extension CalendarVC : UITableViewDataSource {
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
             return 1
@@ -216,29 +216,29 @@ extension CalendarVC : UITableViewDataSource {
             return 0
         }
     }
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(NameCell.HomeTitleCell.rawValue, forIndexPath: indexPath) as! HomeTitleCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: NameCell.HomeTitleCell.rawValue, for: indexPath) as! HomeTitleCell
         
         if indexPath.row == 0 {
             cell.lblStartTime.text = "2:00 PM"
             cell.lblEndTime.text = "5:00 PM"
-            cell.viewColor.backgroundColor = UIColor.yellowColor()
+            cell.viewColor.backgroundColor = UIColor.yellow
         } else if indexPath.row == 1 {
-            cell.viewColor.backgroundColor = UIColor.orangeColor()
+            cell.viewColor.backgroundColor = UIColor.orange
         } else {
-            cell.viewColor.backgroundColor = UIColor.greenColor()
+            cell.viewColor.backgroundColor = UIColor.green
         }
         
         return cell
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("CalendarTableSectionHeader") as! CalendarTableSectionHeader
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CalendarTableSectionHeader") as! CalendarTableSectionHeader
 
         header.backgroundViewHeader.layer.borderWidth = 1
-        header.backgroundViewHeader.layer.borderColor = UIColor.lightGrayColor().CGColor
+        header.backgroundViewHeader.layer.borderColor = UIColor.lightGray.cgColor
         
         switch section {
         case 0:
@@ -254,12 +254,12 @@ extension CalendarVC : UITableViewDataSource {
 }
 
 extension CalendarVC : UITableViewDelegate {
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)        
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)        
         let mainVC = DetailVC(nibName:"DetailVC", bundle:nil)
         self.navigationController!.pushViewController(mainVC, animated: true)
     }
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 65
     }
     

@@ -10,19 +10,19 @@ import UIKit
 
 extension UIColor {
     
-    public func hexStringToUIColor (hex:String) -> UIColor {
-        var cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet() as NSCharacterSet).uppercaseString
+    public func hexStringToUIColor (_ hex:String) -> UIColor {
+        var cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet() as NSCharacterSet).uppercased()
         
         if (cString.hasPrefix("#")) {
-            cString = cString.substringFromIndex(cString.startIndex.advancedBy(1))
+            cString = cString.substring(from: cString.characters.index(cString.startIndex, offsetBy: 1))
         }
         
         if ((cString.characters.count) != 6) {
-            return UIColor.grayColor()
+            return UIColor.gray
         }
         
         var rgbValue:UInt32 = 0
-        NSScanner(string: cString).scanHexInt(&rgbValue)
+        Scanner(string: cString).scanHexInt32(&rgbValue)
         
         return UIColor(
             red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
@@ -33,9 +33,9 @@ extension UIColor {
     }
     
     convenience init(hexString: String) {
-        let hex = hexString.stringByTrimmingCharactersInSet(NSCharacterSet.alphanumericCharacterSet().invertedSet)
+        let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
         var int = UInt32()
-        NSScanner(string: hex).scanHexInt(&int)
+        Scanner(string: hex).scanHexInt32(&int)
         let a, r, g, b: UInt32
         switch hex.characters.count {
         case 3: // RGB (12-bit)

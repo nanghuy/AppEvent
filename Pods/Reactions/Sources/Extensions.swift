@@ -26,21 +26,21 @@
 
 import Foundation
 
-extension SequenceType where Generator.Element: Hashable {
+extension Sequence where Iterator.Element: Hashable {
     /// Returns uniq elements in the sequence by keeping the order.
-    func uniq() -> [Generator.Element] {
-        var alreadySeen: [Generator.Element: Bool] = [:]
+    func uniq() -> [Iterator.Element] {
+        var alreadySeen: [Iterator.Element: Bool] = [:]
         
         return filter { alreadySeen.updateValue(true, forKey: $0) == nil }
     }
 }
 
-extension NSBundle {
+extension Bundle {
     /// Returns the current lib bundle
-    class func reactionsBundle() -> NSBundle {
-        var bundle = NSBundle(forClass: ReactionButton.self)
+    class func reactionsBundle() -> Bundle {
+        var bundle = Bundle(for: ReactionButton.self)
         
-        if let url = bundle.URLForResource("Reactions", withExtension: "bundle"), let podBundle = NSBundle(URL: url) {
+        if let url = bundle.url(forResource: "Reactions", withExtension: "bundle"), let podBundle = Bundle(url: url) {
             bundle = podBundle
         }
         

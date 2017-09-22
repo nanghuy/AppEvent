@@ -34,7 +34,7 @@ import UIKit
  
  You should override these methods if you subclass the `UIReactionControl`.
  */
-public class UIReactionControl: UIControl {
+open class UIReactionControl: UIControl {
   // MARK: - Initializing a ReactionSelect Object
 
   /// Initializes and returns a newly allocated view object with the specified frame rectangle.
@@ -54,14 +54,14 @@ public class UIReactionControl: UIControl {
   // MARK: - Laying out Subviews
 
   /// Lays out subviews.
-  public override func layoutSubviews() {
+  open override func layoutSubviews() {
     super.layoutSubviews()
 
     update()
   }
 
   /// Called when a designable object is created in Interface Builder.
-  public override func prepareForInterfaceBuilder() {
+  open override func prepareForInterfaceBuilder() {
     super.prepareForInterfaceBuilder()
 
     update()

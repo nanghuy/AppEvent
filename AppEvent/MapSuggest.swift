@@ -21,15 +21,15 @@ class MapSuggest: UICollectionViewCell {
     
     func selected() {
         self.backgroundColor = UIColor.init(hexString: "#fd04d8")
-        self.lblTitle.tintColor = UIColor.whiteColor()
+        self.lblTitle.tintColor = UIColor.white
     }
     
     func nonSelected() {
-        self.backgroundColor = UIColor.whiteColor()
-        self.lblTitle.tintColor = UIColor.lightGrayColor()
+        self.backgroundColor = UIColor.white
+        self.lblTitle.tintColor = UIColor.lightGray
     }
     
-    func setup (index: Int) {
+    func setup (_ index: Int) {
         index > 1 ? (imgLeft.frame.size.width = 0) : (imgRight.frame.size.width = 0)
     }
 
