@@ -223,7 +223,7 @@
 			children = (
 				A4CACAF61E1E4DDB005D9067 /* CustomColor.swift */,
 			);
-			name = Helper;
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		A4E50E711E1B4A2200ECCE04 = {
