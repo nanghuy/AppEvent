@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // khoa commit
         // koa-2 commit
         // khoa-2 commit 2
+        // master
         return true
     }
 
