@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         // khoa-1 commit
+        // khoa commit
         return true
     }
 
