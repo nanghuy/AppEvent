@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // khoa/khoa-2 commit
         // khoa/khoa-2 commit 2
+        // khoa/khoa-2 commit 3
         return true
     }
 
