@@ -17,21 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        // khoa-1 commit
-        // khoa commit
-        // koa-2 commit
-        // khoa-2 commit 2
+        // Branch 1: commit 1
+        // Branch 1: commit 2
         
-        // master
-        
-        
-        // khoa/khoa-2 commit
-        // khoa/khoa-2 commit 2
-        // khoa/khoa-2 commit 3
-        
-        // khoa/khoa-3 commit
-
-        // khoa/khoa-4 commit
         return true
     }
 
