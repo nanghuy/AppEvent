@@ -24,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Branch Bug 1
         
+        // Branch Test 4
+        
         return true
     }
 
